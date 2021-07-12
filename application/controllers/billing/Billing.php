@@ -1607,7 +1607,7 @@ class Billing extends CI_Controller {
 		$iTotal = $aData['total'];
 		$iPaid = $aData['total_paid'];
 		$iDue = ($iTotal - $iPaid);
-		$access_token = 'sq0atp-aVN2diRwc2mEM_BVRBp-sA';
+		$access_token = SQUARE_ACCESS_TOKEN;
 
 		if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		  error_log("Received a non-POST request");

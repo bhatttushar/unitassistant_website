@@ -504,3 +504,11 @@ define("billing_template_id", 10000323);
 
 define("UACC_billing_list_id", "04ff86b27d");
 define("UACC_billing_template_id", 131963);
+
+
+
+define("ANDROID_FIREBASE_KEY", 'AAAAjh01eR4:APA91bEV6rI4BZVXl6bCs3PZE05ov7EgofhHvJUZRlX3jPklZytpc2KRxs2zE55qrIU3c-a_3R0w_NNZQAyLvCrDVQkSJ4eMOtWM_1EKkd7pfIV8dvLr0YtmV4m5mN8kNm7_mzhneKxL');
+
+define("IOS_FIREBASE_KEY", 'AAAA52vuIWo:APA91bE8-rh5aPp2mbNAa7wHuTf10fJfdUzxDPH1gUCNosOfcqCYSKeSH4usHnMVWtQ26XAns57gfIDm8EWoPHW8yFH42-MH4R0h1swIp6ifoIMeY4GaIBFz3JKcEBRuk2FUtMA4qPXT');
+
+define("SQUARE_ACCESS_TOKEN", 'sq0atp-aVN2diRwc2mEM_BVRBp-sA');

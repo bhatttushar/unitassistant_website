@@ -171,9 +171,9 @@ class Dashboard extends CI_Controller {
 	        }
 	      }
 
-	      $Akay = 'AAAAjh01eR4:APA91bEV6rI4BZVXl6bCs3PZE05ov7EgofhHvJUZRlX3jPklZytpc2KRxs2zE55qrIU3c-a_3R0w_NNZQAyLvCrDVQkSJ4eMOtWM_1EKkd7pfIV8dvLr0YtmV4m5mN8kNm7_mzhneKxL';
 
-	      $Ikey = 'AAAA52vuIWo:APA91bE8-rh5aPp2mbNAa7wHuTf10fJfdUzxDPH1gUCNosOfcqCYSKeSH4usHnMVWtQ26XAns57gfIDm8EWoPHW8yFH42-MH4R0h1swIp6ifoIMeY4GaIBFz3JKcEBRuk2FUtMA4qPXT';
+	      $Akay = ANDROID_FIREBASE_KEY;
+	      $Ikey = IOS_FIREBASE_KEY;
 
 	      $result = $this->dashboard_model->Send_notification($targetA,$_POST['message'],$_POST['title'],$Akay);
 	      $result = $this->dashboard_model->Send_notification($targetI,$_POST['message'],$_POST['title'],$Ikey);
