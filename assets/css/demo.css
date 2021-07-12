@@ -1,0 +1,441 @@
+/* FLEX ADMIN DEMO STYLES */
+
+/* The following styles are used for demo purposes. */
+
+/* Organizing the Icons Page */
+
+
+.btn-save
+{
+  margin: 21px 21px 21px 40px !important;
+}
+.fa-hover {
+    height: 45px;
+}
+
+.fa-hover:hover {
+    font-size: 20px;
+}
+.bs-glyphicons {
+    margin-bottom: 20px;
+    padding-bottom: 1px;
+    padding-left: 0;
+    overflow: hidden;
+    list-style: none;
+}
+.open > .dropdown-menu {
+    display: block;
+    margin-left: 5px;
+    margin-top: -6px;
+}
+.fa-fw {
+    padding: 0;
+    text-align: center;
+}
+.bg_none 
+{
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    cursor: pointer;
+    color:black !important;
+    
+}
+.bg_none:hover
+{
+    background: none !important;
+}
+.btn-group.list-btn {
+    float: right;
+    padding: 5px;
+}
+.portlet .portlet-heading {
+    background: #16a085 none repeat scroll 0 0;
+    color: white;
+    padding: 1px 15px;
+}
+.bs-glyphicons li {
+    float: left;
+    width: 25%;
+    height: 115px;
+    margin: 0 -1px -1px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.bs-glyphicons .glyphicon {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.bs-glyphicons .glyphicon-class {
+    display: block;
+    text-align: center;
+    word-wrap: break-word; /* Help out IE10+ with class names */
+}
+
+.bs-glyphicons li:hover {
+    background-color: #e0e7e8;
+
+}
+.icon-size
+{
+    font-size: 87px;
+}
+/* FANCY COLLAPSE PANEL STYLES */
+
+.fancy-collapse-panel .panel-default > .panel-heading {
+
+padding: 0;
+
+}
+
+.fancy-collapse-panel .panel-heading a {
+
+ background: #16a085 none repeat scroll 0 0;
+    color: #282525;
+    display: inline-block;
+    padding: 12px 35px 12px 15px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+text-decoration: none;
+
+}
+
+.fancy-collapse-panel .panel-heading a:after {
+
+font-family: "FontAwesome";
+
+content: "\f147";
+
+position: absolute;
+
+right: 20px;
+
+font-size: 20px;
+
+font-weight: 400;
+
+top: 50%;
+
+line-height: 1;
+
+margin-top: -10px;
+
+}
+.fancy-collapse-panel .panel-heading a.collapsed:after {
+
+content: "\f196";
+
+}
+.page-user
+{
+    margin-top: 10%;
+}
+.lebal
+{
+   min-width: 32%;
+}
+.lebal-second
+{
+    min-width: 47%;
+}
+.lebal-third
+{
+    min-width: 51%;
+
+}
+.lebal-four
+{
+    min-width: 67%;
+}
+.lebal-five
+{
+    min-width: 66%;
+}
+.lebal-six
+{
+    min-width: 66%;
+}
+.lebal-seven
+{
+    min-width: 62%;
+}
+.accord-2 {
+    width: 833px;
+}
+input[type="radio"], input[type="checkbox"] {
+    line-height: normal;
+    margin: 4px 1px 0;
+}
+.btn.btn-danger.btn-md {
+    float: right;
+    padding: 5px 25px;
+}
+.total 
+{
+    background: #16a085 none repeat scroll 0 0;
+    color: #000;
+    padding: 20px;
+}
+.button
+{
+    float: right;
+    margin-top: 20px;
+    padding: 10px 32px;
+}
+.main-class {
+    margin-left: 11%;
+    margin-top: 38px;
+}
+.main-accord {
+    margin-bottom: 20px;
+    width: 166%;
+}
+.last
+{
+    min-width: 23% !important;
+}
+.panel-title.total > input {
+    color: black;
+    padding:3px;
+    width: 73%;
+}
+.profile-form{
+    margin-bottom: 14px;
+}
+.last-field
+{
+    padding: 0px;
+}
+.primary
+{
+    padding: 0px;
+}
+label 
+{
+    display: inline-block;
+    font-family: times new roman;
+    font-size: 17px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    max-width: 100%;
+}
+@media (max-width:768px) and (min-width: 361px){
+
+    .panel-group 
+    {
+        width: 381px !important;
+        margin-top: 25px;
+    }
+    .col-sm-offset-4 
+    {
+        margin-left: 14.333%;
+    }
+    .lebal 
+    {
+        min-width: 36%;
+    }
+    .row 
+    {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .lebal-second 
+    {
+        min-width: 54%;
+    }
+    .lebal-third 
+    {
+        min-width: 59%;
+    }
+    .lebal-four 
+    {
+        min-width: 71%;
+    }
+    .lebal-five 
+    {
+        min-width: 70%;
+    }
+    .lebal-seven 
+    {
+        min-width: 67%;
+    }
+    .main-class
+    {
+         margin-left: 6.333%;
+    }
+    .accord-2 
+    {
+        width: 399px;
+    }
+    .primary-label {
+    width: 67%;
+}
+} 
+@media (max-width:360px)
+{
+    .row 
+    {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .panel-group 
+    {
+        margin-top: 65px;
+    }
+    .lebal-second 
+    {
+        min-width: 79% !important;
+    }
+    .label
+    {
+        min-width: 53% !important;
+    }
+    .accord-2 
+    {
+        width: 302px;
+    }
+    input[type="radio"], input[type="checkbox"] 
+    {
+        line-height: normal;
+        margin: 4px 3px 0 !important;
+    }
+    .main-class 
+    {
+        margin-left: 0%;
+    }
+    .main-accord 
+    {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    label 
+    {
+        font-size: 11px;
+    }
+    .lebal-third 
+    {
+        min-width: 87% !important;
+    }
+    .lebal-seven 
+    {
+        min-width: 100% !important;
+    }
+    .lebal-six 
+    {
+        min-width: 100%;
+    }
+    .lebal-five 
+    {
+        min-width: 94%;
+    }
+    .lebal-four 
+    {
+        min-width: 100%;
+    }
+}
+
+
+@media(min-width:768px) {
+    .bs-glyphicons li {
+        width: 12.5%;
+    }
+}
+
+/* Slider Demo Spacing */
+
+.vertical-slider-demo li {
+    margin-right: 20px;
+}
+
+/* Flot Chart Homepage Demo */
+
+.flot-dash-demo {
+    height: 200px !important;
+}
+
+.dashboard-demo-table {
+    overflow: auto;
+}
+
+/* Grid Demo */
+
+.show-grid [class^="col-"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ddd;
+    border: 1px solid rgba(52,73,94,.2);
+    background-color: #eee;
+    background-color: rgba(52,73,94,.15);
+}
+
+.show-grid {
+    margin: 15px 0;
+}
+
+/* Dashboard Map Demo */
+
+#map {
+    height: 250px;
+}
+.page-history
+{
+    margin-top: 0px;
+}
+
+@media(min-width:768px) {
+    #map {
+        height: 500px;
+    }
+}
+
+/* Fixed Height Dashboard Demo Styles */
+
+.dash-demo-tile {
+    height: 250px;
+    text-align: center;
+}
+
+.dash-demo-tile h4 {
+    text-align: left;
+}
+
+#morris-chart-dashboard {
+    width: 100%;
+    height: 240px;
+}
+
+.flot-chart-dashboard {
+    height: 240px;
+}
+
+/* Custom Easy Pie Chart Demo Styles */
+
+.easy-pie-chart {
+    width: 175px;
+    height: 175px;
+    margin: 15px 0 0;
+}
+
+.percent {
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 175px;
+    color: rgba(255,255,255,.7);
+}
+@media (max-width:320px)
+{
+    .accord-2 
+    {
+        width: 270px;
+    }
+    .radio-inline
+    {
+      padding-left: 6px;
+    }
+}

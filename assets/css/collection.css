@@ -1,0 +1,95 @@
+	.navbar-header{
+		min-height: 72px;
+	}
+
+
+	.p0{
+		padding: 0px;
+	}
+
+	.pr0{
+		padding-right: 0px;
+	}
+
+	.panel-body span{
+		vertical-align: -webkit-baseline-middle;
+	}
+
+	button[type="submit"]{
+		margin-bottom: 20px;
+	}
+
+	div#step_1, div#step_2{
+		width: 70%;
+    	margin: 0 auto;
+	}
+
+	div#step_1 h3, div#step_2 h3{
+		text-align: center;
+	}
+
+	.col-sm-11.pl0 {
+    	padding-left: 0px;
+	}
+
+	@media(max-width: 767px){
+		button.navbar-toggle.collapsed {
+		    display: none;
+		}
+
+		div#step_1, div#step_2, .panel-group{
+			width: 100%;
+			margin-top: 20px !important;
+		}
+
+		.fancy-collapse-panel .panel-heading a{
+			padding: 12px 15px 12px 15px;
+		}
+
+		.fancy-collapse-panel .panel-heading a.collapsed:after{
+			font-size: 14px;
+		}
+
+		.fancy-collapse-panel .panel-heading a:after{
+			right: 10px;
+			top: 58%;
+		}
+
+		.col-sm-1.pr0{
+			padding-right: 15px;
+		}
+
+		.col-sm-5.p0{
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		label {
+    		font-size: 16px !important;
+		}
+
+		div#myModal{
+			padding-right: 0px;
+		}
+	}
+
+	@media(max-width: 374px){
+
+		.fancy-collapse-panel .panel-heading a{
+			padding: 12px 10px 12px 10px;
+			font-size: 14px;
+		}
+
+		.fancy-collapse-panel .panel-heading a:after {
+		    right: 5px;
+		}
+	}
+
+	@media(max-width: 335px){
+		.fancy-collapse-panel .panel-heading a{
+			font-size: 12px;
+		}
+		.fancy-collapse-panel .panel-heading a.collapsed:after{
+			font-size: 12px;
+		}
+	}

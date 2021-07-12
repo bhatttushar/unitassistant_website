@@ -1,0 +1,356 @@
+div#table_id_processing {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: #00000052;
+    color: #000;
+    font-size: 30px;
+    padding-top: 25px;
+    height: 100%;
+}
+.success-msg.display-invoice {
+    position: absolute;
+    width: 44%;
+    background: rgb(52,73,94);
+    padding: 20px;
+    text-align: center;
+    margin-left: 23%;
+    top: -9%;
+    color: #fff;
+    font-size: 20px;
+}
+form#delete_form {
+    display: inline-block;
+}
+.all_months .check_month {
+    display: inline-block;
+    width: 24%;
+    margin-bottom: 15px;
+}	
+.overlay_ajax {
+    z-index: 99999;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 1300px;
+    top: 0;
+    left: 0;
+    background: #0c0c0ca8;
+}
+.overlay_ajax p {
+    top: 20%;
+    position: absolute;
+    color: #FFF;
+    font-size: 34px;
+    width: 100%;
+    text-align: center;
+}
+.btn-bs-file input[type="file"] {
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width: 0;
+    height: 0;
+    outline: none;
+    cursor: inherit;
+}
+
+div#example_table_client_wrapper {
+    position: relative;
+}
+div#example_table_client_processing {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: #00000052;
+    color: #000;
+    font-size: 30px;
+    padding-top: 25px;
+}
+#example_table_client > thead > tr > th:nth-child(3) {
+    width: 8% !important;
+}
+.all_months p.error {
+    color: red;
+}
+.all_months .check_month {
+    display: inline-block;
+    width: 24%;
+    margin-bottom: 15px;
+}
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+    width: 40%;
+    text-align: right;
+}
+div#example_table_client_filter {
+    height: 35px;
+}
+div#example_table_client_info {
+    width: 60%;
+    text-align: left;
+    padding-top: 15px;
+    float: left;
+}
+#tblUsers a.btn.btn-success {
+    background-color: #5BC109;
+    border-color: #5BC109;
+}
+#example_table_client input[type="checkbox"] {
+    border-color: #000000;
+}
+
+.btn-group.lists-btn {
+    padding-top: 0;
+}
+label#unit_upload {
+    margin-right: 5px;
+    border-radius: 4px;
+}
+.send_all p {
+    width: fit-content;
+    margin-top: 10px;
+}
+#displaysuccessMessage {
+    color: #fff;
+    font-size: 24px;
+}
+.display-msg {
+    position: absolute;
+    width: 44%;
+    background: rgba(52,73,94,1);
+    padding: 20px;
+    text-align: center;
+    margin-left: 23%;
+    bottom: 35%;
+}
+.editable{
+    cursor: pointer;
+}
+.underline{
+    text-decoration: underline;
+}
+.action{
+    width: 443px !important ;
+}
+.send_all {
+    padding: 15px;
+}
+.gif_image {
+    position: absolute;
+    top: 1%;
+    z-index: 9999999;
+    width: 30px;
+    height: 32px;
+    left: 16%;
+    display: none;
+}
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+ }
+
+.send_all div:nth-child(2),.send_all div:nth-child(3) {
+    padding-top: 12px;
+}
+body .action {
+    width: 130px !important;
+}
+
+.mb10{
+	margin-bottom: 10px;
+}
+
+.page-title .alert {
+    margin-top: 5px;
+    padding: 10px;
+}
+form[name="unpaid"] {
+    display: inline-block;
+}
+
+form#send {
+    display: inline-block;
+}
+.note-editor .note-editable {
+    height: 200px;
+}
+#editor {overflow:scroll; max-height:300px}
+
+.Abal label {
+    width: fit-content;
+    padding: 5px;
+    border: 1px solid green;
+    font-weight: bold;
+}
+.w-100 {
+    width: 100px !important;
+}
+
+input[value='Unpaid'] {
+    background: #d9534f !important;
+    border: none;
+    box-shadow: none;
+    width: 85px;
+}
+
+textarea[name="special_credit_name"],textarea[name="invoice_note_name"] {
+        width: 100%;
+        height: 80px;
+    }
+div#addNew {
+    width: fit-content;
+    display: block;
+}
+div#addNew i {
+    background: green;
+    color: #FFFFFF;
+    padding: 8px;
+    cursor: pointer;
+}
+input[name="special_creadit_val"] {
+    width: 100%;
+    height: 34px;
+    padding-left: 5px;
+}
+#suggesstion-box ul#country-list {
+    margin: 0;
+    padding: 5px;
+    list-style-type: none;
+}
+#suggesstion-box ul#country-list li {
+    padding: 2px 0px 8px 0px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+th.text-center.th-name {
+    width: 40%;
+}
+#tab_logic_sub input {
+    width: 100%;
+    padding-left: 5px;
+}
+#displaysuccessMessage {
+    color: #fff;
+    font-size: 24px;
+}
+.total-fields{
+   padding-right: 0px;
+   margin-top: 15px;
+}
+div#suggesstion-box {
+    position: absolute;
+    z-index: 99999;
+    background: #FFF;
+    width: 313px;
+}
+ul#country-list li:hover {
+    background: #dddddd;
+    cursor: pointer;
+}
+#suggesstion-box ul#country-list li {
+    padding: 4px 5px 4px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+.pull-left.col-md-7.display-msg {
+    position: absolute;
+    width: 44%;
+    background: rgba(52,73,94,1);
+    padding: 20px;
+    text-align: center;
+    margin-left: 23%;
+    bottom: 35%;
+}
+#country-list > li:last-child {
+    border-bottom: none;
+}
+
+
+div#uacc_billing_table_wrapper th, #example-table1 th, #table_id th, table#unsub_table_id th{
+    padding: 10px !important;
+    width: 1px !important;
+}
+
+/*#example-table1 th.invoiceDate{
+    width: 49px !important;
+}*/
+
+/*#example-table1 th.action{
+    width: 251px !important;
+}*/
+
+#table_id th.startDate{
+    width: 83px !important;
+}
+
+#table_id th.action{
+    width: 305px !important;
+}
+
+
+div#uacc_billing_table_wrapper th.action{
+    width: 242px !important;
+}
+
+.inline-block, #example-table1 .action_col a, #example-table1 .action_col form{
+    display: inline-block;
+}
+
+#create_all_invoice, #reset_form{
+    display: contents;
+}
+
+#credit_excel, #excel_price {
+    display: none;
+}
+
+.check_month {
+    width: 24%;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.loading_img{
+    width: 100px;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 999999;
+    display: none;
+}
+
+.overlay_ajax{
+    position: fixed !important;
+}
+
+.loading_img img{
+    width: 100%;
+}
+
+.pt0{
+    padding-top: 0px !important;
+}
+
+.pb0{
+    padding-bottom: 0px !important;
+}
+
+.mb7{
+    margin-bottom: 7px !important;
+}
+
+.mr5{
+    margin-right: 5px !important;
+}
