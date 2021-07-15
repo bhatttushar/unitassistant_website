@@ -116,16 +116,21 @@ class Cron extends CI_Controller {
 				$subject = 'Reminder from unitassistant service';
 				$sContent = "<html><body>";
 				$sContent .= "<h4 style='font-size:16px;'>Hello  <strong>".$value['user_name']."</strong>,</h4>";
-				$sContent .= "<p style='font-size:16px;'>Your remainer for &nbsp;".$value['name']."</p>";
-				$sContent .= "<p style='font-size:16px;'><strong>Reminder note:</strong>&nbsp;".$value['reminder_note']." </p>";
+				$sContent .= "<p style='font-size:16px;'>Your reminder for &nbsp;".$value['name']."</p>";
+				$sContent .="<p style='font-size:16px;'><strong>Reminder note:</strong>&nbsp;".$value['reminder_note']."</p>";
 				$sContent .= "</body></html>";
 
 				$this->email->set_mailtype("html");
-			    $this->email->from('office@unitassistant.com', 'Unit Assistant');
-			    $this->email->to($value['email']);
-			    $this->email->subject($subject);
-			    $this->email->message($sContent);
-			    $send = $this->email->send();
+			   $this->email->from('office@unitassistant.com', 'Unit Assistant');
+			   $this->email->to($value['email']);
+			   $this->email->subject($subject);
+			   $this->email->message($sContent);
+
+			   if (!empty($value['email'])) {
+			   	$send = $this->email->send();
+			   }else{
+			   	$send = true;
+			   }
 
 				if($send){
 					$this->cron_model->update_reminder($value['id_reminder']);

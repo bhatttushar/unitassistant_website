@@ -18,7 +18,8 @@ class Director_add_model extends CI_Model {
   }
 
   function add_director($data, $is_future=""){
-    /* Add to general info*/
+    //echo pre($data);
+    // Add to general info
     $generalInfo = getTableFields('general');
     $generalData = array();
     foreach ($data as $key => $value) {
@@ -36,10 +37,10 @@ class Director_add_model extends CI_Model {
     $general_table = ($is_future=='future') ? 'future_general_info' : 'newsletter_general_info';
     $this->db->insert($general_table, $generalData);
     $last_insert_id = $this->db->insert_id();
-    /* End general info*/
+    // End general info
     
     if ($last_insert_id > 0) {
-      /* Add to newsletter_design_info */
+      // Add to newsletter_design_info
       $designInfo = getTableFields('design');
 
       $details = array();
@@ -50,9 +51,7 @@ class Director_add_model extends CI_Model {
         $packaging_table = 'future_packaging';
         $other_details_table = 'future_other_details';
         $details['id_future_newsletter'] = $last_insert_id;
-
         $infoTable = 'future_general_info';
-
         $nIdNewsletter = $data['id_newsletter'];
       }else{
         $design_table = 'newsletter_design_info';
@@ -60,7 +59,6 @@ class Director_add_model extends CI_Model {
         $packaging_table = 'newsletter_packaging';
         $other_details_table = 'newsletter_other_details';
         $details['id_newsletter'] = $last_insert_id;
-
         $infoTable = 'newsletter_general_info';
         $nIdNewsletter = $last_insert_id;
       }
@@ -79,17 +77,11 @@ class Director_add_model extends CI_Model {
         $designData['id_newsletter'] = $last_insert_id;
       }
       
-      $add_to_design = $this->db->insert($design_table, $designData);
+      $this->db->insert($design_table, $designData);
+      // End to newsletter_design_info
 
-      if ($is_future=='future' && $add_to_design==true ) {
-        $this->db->set('package_for', $designData['package_for']);
-        $this->db->where('id_newsletter', $nIdNewsletter);
-        $this->db->update('newsletter_design_info');
-      }
 
-      /* End to newsletter_design_info */
-
-      /* Add to newsletter_emails */
+      // Add to newsletter_emails
       $emailInfo = getTableFields('emails');
       $emailsData = array();
       foreach ($data as $key => $value) {
@@ -106,9 +98,10 @@ class Director_add_model extends CI_Model {
       }
 
       $this->db->insert($emails_table, $emailsData);
-      /* End to newsletter_emails */
+      // End to newsletter_emails
 
-      /* Add to newsletter_packaging */
+
+      // Add to newsletter_packaging
       $packagingInfo = getTableFields('packaging');
       $packagingData = array();
       foreach ($data as $key => $value) {
@@ -123,29 +116,31 @@ class Director_add_model extends CI_Model {
       }else{
         $packagingData['id_newsletter'] = $last_insert_id;
       }
-
+      
       $packagingData['package_value'] = GetPackageValue($data['package'], $data['unit_size']);
       $packagingData['socialM'] = serialize($packagingData['socialM']);
+      
       $packagingData['cv_account'] = encryptIt($packagingData['cv_account']);
       $this->db->insert($packaging_table, $packagingData);
-      /* End to newsletter_packaging */
+      // End to newsletter_packaging
 
-      /* Add to newsletter_other_details */
+
+      // Add to newsletter_other_details
       $res = $this->db->insert($other_details_table, $details);
-      /* End to newsletter_other_details */
+      // End to newsletter_other_details
 
-      /* Delete user */
+      // Delete user
       $this->DeleteUser($nIdNewsletter, $generalData['contract_update_date'], $infoTable);
-      /* Delete user */
+      // Delete user
 
-      /* Add to history_general_info */
+      // Add to history_general_info
       if ($res) {
         if ($is_future=='future') {
           unset($designData['future_package_date']);
         }
         $this->addDirectorHistory($nIdNewsletter, $generalData, $designData, $emailsData, $packagingData, $details);  
       }
-      /* End to history_general_info */
+      // End to history_general_info
 
       $nsd_client = isset($packagingData['nsd_client']) ? $packagingData['nsd_client'] : '0';
       $this->InsertReports($nIdNewsletter, $packagingData['package'], $nsd_client);

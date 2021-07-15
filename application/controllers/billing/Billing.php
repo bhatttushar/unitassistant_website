@@ -25,7 +25,7 @@ class Billing extends CI_Controller {
 		BillingViews("billing/dashboard", $this->global,$data, NULL);
 	}
 
-	/*function AjaxData(){
+	function AjaxData(){
 		$draw = $_POST['draw'];
 		$row = $_POST['start'];
 		$rowperpage = $_POST['length']; // Rows display per page
@@ -73,18 +73,12 @@ class Billing extends CI_Controller {
 		$response = array( "draw" => intval($draw), "query" => '', "iTotalRecords" => $details['totalRecordFilter'], "iTotalDisplayRecords" => $details['totalRecords'], "aaData" => $data);
 		echo json_encode($response);
 		exit();
-	}*/
+	}
 
 	function clients() {
 		//$data['clients'] = $this->billing_model->getUAClients();
-		$details['data']=$this->billing_model->DataAjax();
-		$aNewsletterIdEx = array();
-		foreach ($details['data']['id_newsletters'] as $key => $value) {
-			$aNewsletterIdEx[] = $value['id_newsletter'];
-		}
-		$details['aNewsletterIdEx'] = $aNewsletterIdEx;
 		$this->global['pageTitle'] = 'Unit Assistant : Clients List';
-		BillingViews("billing/clients", $this->global, $details, NULL);
+		BillingViews("billing/clients", $this->global, NULL, NULL);
 	}
 
 	function invoices_list($id_newsletter){
@@ -1895,9 +1889,9 @@ class Billing extends CI_Controller {
 		    $result = $MailChimp->post('campaigns/' . $responseObj->id . '/actions/send');
 		    	
 		    if ($result) {
-		    	$return = array('status'=>1,'msg'=>'successfully');
+		    	$return = array('status'=>1, 'msg'=>'successfully');
 		    }else{
-		    	$return = array('status'=>0,'msg'=>'not successfully');
+		    	$return = array('status'=>0, 'msg'=>'not successfully');
 		    }
 		    
 		    echo json_encode($return);

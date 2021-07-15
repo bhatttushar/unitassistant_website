@@ -81,37 +81,7 @@
 			                            <th class="nosort action">Action</th>
 			        				</tr>
 			        			</thead>
-			        			<tbody>
-			        				<?php
-			        					$count =1;
-										foreach ($data['user_data'] as $val) {
-											$bal = GetBalance($val['id_newsletter']);
-											$due = GetTotalDue($val['id_newsletter']);
-											
-											$class = in_array($val['id_newsletter'],  $aNewsletterIdEx) ? 'btn-success' : 'btn-info disabled';
-
-											$button = "<a class='btn ".$class."' href='".base_url('billing/invoices-list/'.$val['id_newsletter'])."' title='View Invoices'>View Invoices</a>&nbsp;
-													<a class='btn ".$class."' href='".base_url('billing/invoice-year-report/'.$val['id_newsletter'])."' title='Year Report'>Year Report</a>&nbsp;
-													<a href='".base_url('billing/reset-balance/'.$val['id_newsletter'])."' class='btn btn-danger Sreset_bal'>Reset Balance</a>";
-
-									        $b1 = '<input type="checkbox" name="create_all[]" value="'.$val['id_newsletter'].'">';
-									?>
-											<tr>	
-												<td><?php echo $count; ?></td>
-												<td><?php echo $b1; ?></td>
-												<td><?php echo $val['first_bill_date']; ?></td>
-												<td><?php echo $val['name']; ?></td>
-												<td><?php echo $val['cell_number']; ?></td>
-												<td><?php echo $val['email']; ?></td>
-												<td><?php echo $val['consultant_number']; ?></td>
-												<td><?php echo ($due - $bal); ?></td>
-												<td><?php echo $button; ?></td>
-											</tr>
-									<?php
-											$count++;
-										}
-			        				?>
-			        			</tbody>
+			        			<tbody></tbody>
 			        		</table>
 			        	</div>
 			        </div>

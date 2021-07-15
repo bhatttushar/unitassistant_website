@@ -4,14 +4,6 @@
 		$data = array_fill_keys(array_keys($getField), '');
 	}
 
-	$aUnserialzed = !empty($data['hidden_point_values']) ? unserialize($data['hidden_point_values']) : ''; 
-
-	if (empty($aUnserialzed)) {
-		$aUnserialzed = array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33); 
-		$getField = array_flip($aUnserialzed);
-		$aUnserialzed = array_fill_keys(array_keys($getField), '');
-	}
-
 	$decrypted = !empty($data['cv_account']) ? decryptIt($data['cv_account']) : '';
 ?>
 <div id="PackagingBTN" class="tabcontent">
@@ -27,7 +19,7 @@
 		</div>
 		<div class="col-md-12">
 			<label> Package :</label>
-			<input type="radio" name="package" class="radio-inline notget"  value="S" <?php echo (isset($data['package']) && $data['package'] == 'S') ? 'checked = "checked"' : '' ?>> Sapphire
+			<input type="radio" name="package" class="radio-inline notget" value="S" <?php echo (isset($data['package']) && $data['package'] == 'S') ? 'checked = "checked"' : '' ?>> Sapphire
 			<input type="radio" name="package"  class="radio-inline notget" value="R" <?php echo (isset($data['package']) && $data['package'] == 'R') ? 'checked = "checked"' : '' ?>> Ruby
 			<input type="radio" name="package"  class="radio-inline notget" value="D" <?php echo (isset($data['package']) && $data['package'] == 'D') ? 'checked = "checked"' : '' ?>> Diamond
 			<input type="radio" name="package"  class="radio-inline notget" value="E" <?php echo (isset($data['package']) && $data['package'] == 'E') ? 'checked = "checked"' : '' ?>> Emerald
@@ -91,7 +83,7 @@
 		</div>
 		<div class="col-md-12">
 			<label> 7/2019 Total Text Package: </label>
-			<input type="checkbox" name="total_text_program7" class="radio-inline notget"  value="1" <?php echo ($data['total_text_program7'] == '1') ? 'checked = "checked"' : '' ?> <?php echo ($data['canada_service']== '1') ? 'readonly' : '' ?> > NL emailed & texted out is included with texting system. <br/> ONLY if we design clients newsletter. If wanting their own formatted - click the $20 option above. <br/><br/>
+			<input type="checkbox" name="total_text_program7" class="radio-inline notget" value="1" <?php echo ($data['total_text_program7'] == '1') ? 'checked = "checked"' : '' ?> <?php echo ($data['canada_service']== '1') ? 'readonly' : '' ?> > NL emailed & texted out is included with texting system. <br/> ONLY if we design clients newsletter. If wanting their own formatted - click the $20 option above. <br/><br/>
 			<?php $hidden = Get_total_text_program7($data['package'], $data['total_text_program7']); ?>
 			<input type="hidden" name="hidden_total_text_program7" id="hidden_total_text_program7" value="<?php echo $hidden ? $hidden : ''; ?>">
 			<input type="hidden" name="hidden_total_text7" id="hidden_total_text7" value="<?php echo $data['total_text_program7']; ?>">
@@ -126,7 +118,7 @@
 		</div>
 		<div class="col-md-12">
 			<label class="col-sm-3" style="padding-left: 0;"> Website Link </label>
-			<input type="text" class="col-sm-7" name="website_link"  value="<?php echo $data['website_link'] != '' ? $data['website_link'] : '' ?>">
+			<input type="text" class="col-sm-7" name="website_link" value="<?php echo $data['website_link'] != '' ? $data['website_link'] : '' ?>">
 		</div>
 		<div class="col-md-12">
 			<label> Personal URL </label>
@@ -196,7 +188,7 @@
 			 Special Credit <small>Approved staff only <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; only shows on invoice</small>
 			</label>
 			<input type="text" name="special_credit" value="<?php echo ($data['special_credit']) ? $data['special_credit'] : 0.00; ?>">
-			<input type="hidden" name="special_credit_hidden" id="special_credit"  value="<?php echo isset($aUnserialzed[24]) ? $aUnserialzed[24] : '0.00' ?>">
+			<input type="hidden" name="special_credit_hidden" id="special_credit" value="<?php echo isset($data['special_credit']) ? $data['special_credit'] : 0.00 ?>">
 		</div>
 		<div class="col-md-12 credit_notes">
 			<label class="bottom-label credit-notes"> Special Credit Reason: </label>
@@ -290,159 +282,159 @@
 		<div class="col-md-12">
 			<label class="bottom-label"> Newsletter-Color </label>
 			<input type="number" min="0" name="newsletter_color" value="<?php echo ($data['newsletter_color']) ? $data['newsletter_color'] : 0; ?>">
-			<input type="hidden" name="newsletter_color_hidden" id="newsletter_color" value="<?php echo isset($aUnserialzed[0]) ? $aUnserialzed[0] : '0' ?>">
+			<input type="hidden" name="newsletter_color_hidden" id="newsletter_color" value="<?php echo ($data['newsletter_color']) ? newsletter_color_constant_val * $data['newsletter_color'] : 0; ?>" >
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Newsletter-Black White </label>
 			<input type="number" min="0" name="newsletter_black_white" value="<?php echo ($data['newsletter_black_white']) ? $data['newsletter_black_white'] : 0; ?>">
-			<input type="hidden" name="newsletter_black_white_hidden" id="newsletter_black_white" value="<?php echo isset($aUnserialzed[1]) ? $aUnserialzed[1] : '0' ?>">
+			<input type="hidden" name="newsletter_black_white_hidden" id="newsletter_black_white" value="<?php echo ($data['newsletter_black_white']) ? newsletter_black_white_constant_val * $data['newsletter_black_white'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Last Month Packets Postage </label>
 			<input type="number" min="0" name="month_packet_postage" value="<?php echo ($data['month_packet_postage']) ? $data['month_packet_postage'] : 0; ?>">
-			<input type="hidden" name="month_packet_postage_hidden" id="month_packet_postage"  value="<?php echo isset($aUnserialzed[2]) ? $aUnserialzed[2] : '0' ?>">
+			<input type="hidden" name="month_packet_postage_hidden" id="month_packet_postage" value="<?php echo ($data['month_packet_postage']) ? month_packet_postage_constant_val * $data['month_packet_postage'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> New Consultant Packet Postage </label>
 			<input type="number" min="0" name="consultant_packet_postage" value="<?php echo ($data['consultant_packet_postage']) ? $data['consultant_packet_postage'] : 0; ?>">
-		<input type="hidden" name="consultant_packet_postage_hidden" id="consultant_packet_postage"  value="<?php echo isset($aUnserialzed[3]) ? $aUnserialzed[3] : '0' ?>">
+		<input type="hidden" name="consultant_packet_postage_hidden" id="consultant_packet_postage" value="<?php echo ($data['consultant_packet_postage']) ? consultant_packet_postage_constant_val * $data['consultant_packet_postage'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> New Consultant Bundles </label>
 			<input type="number" min="0" name="consultant_bundles" value="<?php echo ($data['consultant_bundles']) ? $data['consultant_bundles'] : 0; ?>">
-			<input type="hidden" name="consultant_bundles_hidden" id="consultant_bundles"  value="<?php echo isset($aUnserialzed[4]) ? $aUnserialzed[4] : '0' ?>">
+			<input type="hidden" name="consultant_bundles_hidden" id="consultant_bundles" value="<?php echo ($data['consultant_bundles']) ? consultant_bundles_constant_val * $data['consultant_bundles'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Consistency Gift </label>
 			<input type="number" min="0" name="consistency_gift" value="<?php echo ($data['consistency_gift']) ? $data['consistency_gift'] : 0; ?>">
-			<input type="hidden" name="consistency_gift_hidden" id="consistency_gift"  value="<?php echo isset($aUnserialzed[5]) ? $aUnserialzed[5] : '0' ?>">
+			<input type="hidden" name="consistency_gift_hidden" id="consistency_gift" value="<?php echo ($data['consistency_gift']) ? consistency_gift_constant_val * $data['consistency_gift'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Reds Program Gift </label>
 			<input type="number" min="0" name="reds_program_gift" value="<?php echo ($data['reds_program_gift']) ? $data['reds_program_gift'] : 0; ?>">
-			<input type="hidden" name="reds_program_gift_hidden" id="reds_program_gift"  value="<?php echo isset($aUnserialzed[6]) ? $aUnserialzed[6] : '0' ?>">
+			<input type="hidden" name="reds_program_gift_hidden" id="reds_program_gift" value="<?php echo ($data['reds_program_gift']) ? reds_program_gift_constant_val * $data['reds_program_gift'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Stars Program Gift </label>
 			<input type="number" min="0" name="stars_program_gift" value="<?php echo ($data['stars_program_gift']) ? $data['stars_program_gift'] : 0; ?>">
-			<input type="hidden" name="stars_program_gift_hidden" id="stars_program_gift"  value="<?php echo isset($aUnserialzed[7]) ? $aUnserialzed[7] : '0' ?>">
+			<input type="hidden" name="stars_program_gift_hidden" id="stars_program_gift" value="<?php echo ($data['stars_program_gift']) ? stars_program_gift_constant_val * $data['stars_program_gift'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Gift Wrap and Postage </label>
 			<input type="number" min="0" name="gift_wrap_postpage" value="<?php echo ($data['gift_wrap_postpage']) ? $data['gift_wrap_postpage'] : 0; ?>">
-			<input type="hidden" name="gift_wrap_postpage_hidden" id="gift_wrap_postpage"  value="<?php echo isset($aUnserialzed[8]) ? $aUnserialzed[8] : '0' ?>">
+			<input type="hidden" name="gift_wrap_postpage_hidden" id="gift_wrap_postpage" value="<?php echo ($data['gift_wrap_postpage']) ? gift_wrap_postpage_constant_val * $data['gift_wrap_postpage'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> One Rate Postage </label>
 			<input type="number" min="0" name="one_rate_postpage" value="<?php echo ($data['one_rate_postpage']) ? $data['one_rate_postpage'] : 0; ?>">
-			<input type="hidden" name="one_rate_postpage_hidden" id="one_rate_postpage"  value="<?php echo isset($aUnserialzed[9]) ? $aUnserialzed[9] : '0' ?>">
+			<input type="hidden" name="one_rate_postpage_hidden" id="one_rate_postpage" value="<?php echo ($data['one_rate_postpage']) ? one_rate_postpage_constant_val * $data['one_rate_postpage'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Month End Blast Flyer </label>
 			<input type="number" min="0" name="month_blast_flyer" value="<?php echo ($data['month_blast_flyer']) ? $data['month_blast_flyer'] : 0; ?>">
-			<input type="hidden" name="month_blast_flyer_hidden" id="month_blast_flyer"  value="<?php echo isset($aUnserialzed[10]) ? $aUnserialzed[10] : '0' ?>">
+			<input type="hidden" name="month_blast_flyer_hidden" id="month_blast_flyer" value="<?php echo ($data['month_blast_flyer']) ? month_blast_flyer_constant_val * $data['month_blast_flyer'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Text and Email to Unit </label>
 			<input type="number" min="0" name="flyer_ecard_unit" value="<?php echo ($data['flyer_ecard_unit']) ? $data['flyer_ecard_unit'] : 0; ?>">
-			<input type="hidden" name="flyer_ecard_unit_hidden" id="flyer_ecard_unit"  value="<?php echo isset($aUnserialzed[11]) ? $aUnserialzed[11] : '0' ?>">
+			<input type="hidden" name="flyer_ecard_unit_hidden" id="flyer_ecard_unit" value="<?php echo ($data['flyer_ecard_unit']) ? flyer_ecard_unit_constant_val * $data['flyer_ecard_unit'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Unit Challenge Flyer </label>
 			<input type="number" min="0" name="unit_challenge_flyer" value="<?php echo ($data['unit_challenge_flyer']) ? $data['unit_challenge_flyer'] : 0; ?>">
-			<input type="hidden" name="unit_challenge_flyer_hidden" id="unit_challenge_flyer"  value="<?php echo isset($aUnserialzed[12]) ? $aUnserialzed[12] : '0' ?>">
+			<input type="hidden" name="unit_challenge_flyer_hidden" id="unit_challenge_flyer" value="<?php echo ($data['unit_challenge_flyer']) ? unit_challenge_flyer_constant_val * $data['unit_challenge_flyer'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Team Building Flyer </label>
 			<input type="number" min="0" name="team_building_flyer" value="<?php echo ($data['team_building_flyer']) ? $data['team_building_flyer'] : 0; ?>">
-			<input type="hidden" name="team_building_flyer_hidden" id="team_building_flyer"  value="<?php echo isset($aUnserialzed[13]) ? $aUnserialzed[13] : '0' ?>">
+			<input type="hidden" name="team_building_flyer_hidden" id="team_building_flyer" value="<?php echo ($data['team_building_flyer']) ? team_building_flyer_constant_val * $data['team_building_flyer'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Wholesale Promo Flyer </label>
 			<input type="number" min="0" name="wholesale_promo_flyer" value="<?php echo ($data['wholesale_promo_flyer']) ? $data['wholesale_promo_flyer'] : 0; ?>">
-			<input type="hidden" name="wholesale_promo_flyer_hidden" id="wholesale_promo_flyer"  value="<?php echo isset($aUnserialzed[14]) ? $aUnserialzed[14] : '0' ?>">
+			<input type="hidden" name="wholesale_promo_flyer_hidden" id="wholesale_promo_flyer" value="<?php echo ($data['wholesale_promo_flyer']) ? wholesale_promo_flyer_constant_val * $data['wholesale_promo_flyer'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Design Fee </label>
 			<input type="number" min="0" name="postcard_design" value="<?php echo ($data['postcard_design']) ? $data['postcard_design'] : 0; ?>">
-			<input type="hidden" name="postcard_design_hidden" id="postcard_design"  value="<?php echo isset($aUnserialzed[15]) ? $aUnserialzed[15] : '0' ?>">
+			<input type="hidden" name="postcard_design_hidden" id="postcard_design" value="<?php echo ($data['postcard_design']) ? postcard_design_constant_val * $data['postcard_design'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Custom Changes </label>
 			<input type="number" min="0" name="postcard_edit" value="<?php echo ($data['postcard_edit']) ? $data['postcard_edit'] : 0; ?>">
-			<input type="hidden" name="postcard_edit_hidden" id="postcard_edit"  value="<?php echo isset($aUnserialzed[16]) ? $aUnserialzed[16] : '0' ?>">
+			<input type="hidden" name="postcard_edit_hidden" id="postcard_edit" value="<?php echo ($data['postcard_edit']) ? postcard_edit_constant_val * $data['postcard_edit'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Small Edit </label>
 			<input type="number" min="0" name="ecard_unit" value="<?php echo ($data['ecard_unit']) ? $data['ecard_unit'] : 0; ?>">
-			<input type="hidden" name="ecard_unit_hidden" id="ecard_unit"  value="<?php echo isset($aUnserialzed[17]) ? $aUnserialzed[17] : '0' ?>">
+			<input type="hidden" name="ecard_unit_hidden" id="ecard_unit" value="<?php echo ($data['ecard_unit']) ? ecard_unit_constant_val * $data['ecard_unit'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Graphic Insert </label>
 			<input type="number" min="0" name="nl_flyer" value="<?php echo ($data['nl_flyer']) ? $data['nl_flyer'] : 0; ?>">
-			<input type="hidden" name="nl_flyer_hidden" id="nl_flyer"  value="<?php echo isset($aUnserialzed[29]) ? $aUnserialzed[29] : '0' ?>">
+			<input type="hidden" name="nl_flyer_hidden" id="nl_flyer" value="<?php echo ($data['nl_flyer']) ? nl_flyer_constant_val * $data['nl_flyer'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Specialty Postcard </label>
 			<input type="number" min="0" name="speciality_postcard" value="<?php echo ($data['speciality_postcard']) ? $data['speciality_postcard'] : 0; ?>">
-			<input type="hidden" name="speciality_postcard_hidden" id="speciality_postcard"  value="<?php echo isset($aUnserialzed[18]) ? $aUnserialzed[18] : '0' ?>">
+			<input type="hidden" name="speciality_postcard_hidden" id="speciality_postcard" value="<?php echo ($data['speciality_postcard']) ? speciality_postcard_constant_val * $data['speciality_postcard'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Greeting Card with gift </label>
 			<input type="number" min="0" name="card_with_gift" value="<?php echo ($data['card_with_gift']) ? $data['card_with_gift'] : 0; ?>">
-			<input type="hidden" name="card_with_gift_hidden" id="card_with_gift"  value="<?php echo isset($aUnserialzed[19]) ? $aUnserialzed[19] : '0' ?>">
+			<input type="hidden" name="card_with_gift_hidden" id="card_with_gift" value="<?php echo ($data['card_with_gift']) ? card_with_gift_constant_val * $data['card_with_gift'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Greeting Card </label>
 			<input type="number" min="0" name="greeting_card" value="<?php echo ($data['greeting_card']) ? $data['greeting_card'] : 0; ?>">
-			<input type="hidden" name="greeting_card_hidden" id="greeting_card"  value="<?php echo isset($aUnserialzed[33]) ? $aUnserialzed[33] : '0' ?>">
+			<input type="hidden" name="greeting_card_hidden" id="greeting_card" value="<?php echo ($data['greeting_card']) ? greeting_card_constant_val * $data['greeting_card'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Greeting Post Card </label>
 			<input type="number" min="0" name="birthday_brownie" value="<?php echo ($data['birthday_brownie']) ? $data['birthday_brownie'] : 0; ?>">
-			<input type="hidden" name="birthday_brownie_hidden" id="birthday_brownie"  value="<?php echo isset($aUnserialzed[20]) ? $aUnserialzed[20] : '0' ?>">
+			<input type="hidden" name="birthday_brownie_hidden" id="birthday_brownie" value="<?php echo ($data['birthday_brownie']) ? birthday_brownie_constant_val * $data['birthday_brownie'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Birthday Cards and Starbucks </label>
 			<input type="number" min="0" name="birthday_starbucks" value="<?php echo ($data['birthday_starbucks']) ? $data['birthday_starbucks'] : 0; ?>">
-			<input type="hidden" name="birthday_starbucks_hidden" id="birthday_starbucks"  value="<?php echo isset($aUnserialzed[21]) ? $aUnserialzed[21] : '0' ?>">
+			<input type="hidden" name="birthday_starbucks_hidden" id="birthday_starbucks" value="<?php echo ($data['birthday_starbucks']) ? birthday_starbucks_constant_val * $data['birthday_starbucks'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Anniversary Card and Starbucks </label>
 			<input type="number" min="0" name="anniversary_starbucks" value="<?php echo ($data['anniversary_starbucks']) ? $data['anniversary_starbucks'] : 0; ?>">
-			<input type="hidden" name="anniversary_starbucks_hidden" id="anniversary_starbucks"  value="<?php echo isset($aUnserialzed[22]) ? $aUnserialzed[22] : '0' ?>">
+			<input type="hidden" name="anniversary_starbucks_hidden" id="anniversary_starbucks" value="<?php echo ($data['anniversary_starbucks']) ? anniversary_starbucks_constant_val * $data['anniversary_starbucks'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Referral Credit </label>
 			<input type="number" min="0" name="referral_credit" value="<?php echo ($data['referral_credit']) ? $data['referral_credit'] : 0; ?>">
-			<input type="hidden" name="referral_credit_hidden" id="referral_credit"  value="<?php echo isset($aUnserialzed[23]) ? $aUnserialzed[23] : '0' ?>">
+			<input type="hidden" name="referral_credit_hidden" id="referral_credit" value="<?php echo ($data['referral_credit']) ? referral_credit_constant_val * $data['referral_credit'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Text Blast Customers Billing </label>
 			<input type="number" min="0" name="cc_billing" value="<?php echo ($data['cc_billing']) ? $data['cc_billing'] : 0; ?>">
-			<input type="hidden" name="cc_billing_hidden" id="cc_billing"  value="<?php echo !empty($data['cc_billing']) ? $data['cc_billing']*29.99 : '0' ?>">
+			<input type="hidden" name="cc_billing_hidden" id="cc_billing" value="<?php echo !empty($data['cc_billing']) ? $data['cc_billing']*UACC_BILLING : '0' ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> Customer Newsletter </label>
 			<input type="number" min="0" name="customer_newsletter" value="<?php echo ($data['customer_newsletter']) ? $data['customer_newsletter'] : 0; ?>">
-			<input type="hidden" name="customer_newsletter_hidden" id="customer_newsletter"  value="<?php echo isset($aUnserialzed[26]) ? $aUnserialzed[26] : '0' ?>">
+			<input type="hidden" name="customer_newsletter_hidden" id="customer_newsletter" value="<?php echo ($data['customer_newsletter']) ? customer_newsletter_constant_val * $data['customer_newsletter'] : 0; ?>">
 		</div>
 		
 		
 		<div class="col-md-12">
 			<label class="bottom-label"> Picture Texting </label>
 			<input type="number" min="0" name="picture_texting" value="<?php echo ($data['picture_texting']) ? $data['picture_texting'] : 0; ?>">
-			<input type="hidden" name="picture_texting_hidden" id="picture_texting"  value="<?php echo isset($aUnserialzed[30]) ? $aUnserialzed[30] : '0' ?>">
+			<input type="hidden" name="picture_texting_hidden" id="picture_texting" value="<?php echo ($data['picture_texting']) ? picture_texting_constant_val * $data['picture_texting'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> KeyWord </label>
 			<input type="number" min="0" name="keyword" value="<?php echo ($data['keyword']) ? $data['keyword'] : 0; ?>">
-			<input type="hidden" name="keyword_hidden" id="keyword"  value="<?php echo isset($aUnserialzed[31]) ? $aUnserialzed[31] : '0' ?>">
+			<input type="hidden" name="keyword_hidden" id="keyword" value="<?php echo ($data['keyword']) ? keyword_constant_val * $data['keyword'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<label class="bottom-label"> New Client Set up Fee </label>
 			<input type="number" min="0" name="client_setup" value="<?php echo ($data['client_setup']) ? $data['client_setup'] : 0; ?>">
-			<input type="hidden" name="client_setup_hidden" id="client_setup"  value="<?php echo isset($aUnserialzed[32]) ? $aUnserialzed[32] : '0' ?>">
+			<input type="hidden" name="client_setup_hidden" id="client_setup" value="<?php echo ($data['client_setup']) ? client_setup_constant_val * $data['client_setup'] : 0; ?>">
 		</div>
 		<div class="col-md-12">
 			<img src="<?php echo base_url('assets/images/thumbnail_pkg_charges.png'); ?>" class="img-responsive" height="100%" width="100%">

@@ -39,7 +39,7 @@ class Directors extends CI_Controller {
 	}
 
 	function dis_approve_director($id_newsletter){
-		$result=$this->director_model->update_design_dis_approve_status($id_newsletter);
+		$result=$this->director_model->update_design_disapprove_status($id_newsletter);
 		if ($result == true) {
 			$this->session->set_flashdata('success', 'Record disapproved successfully');
 		} else {

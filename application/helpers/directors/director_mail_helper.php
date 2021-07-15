@@ -22,60 +22,60 @@ function sendNoteMail($emails, $data, $Assignnames) {
     return $status;
 }
 
-function directorMail($aDatas){
+function directorMail($data){
 	$CI = get_instance();
 
 	$sPersonalUnitAppMsg = '';
 	$sPersonalUnitWebMsg = '';
-	if (isset($aDatas['package']) && $aDatas['package'] == 'N') {
-		if ( isset($aDatas['personal_unit_app']) && $aDatas['personal_unit_app'] == '1') {
+	if (isset($data['package']) && $data['package'] == 'N') {
+		if ( isset($data['personal_unit_app']) && $data['personal_unit_app'] == '1') {
 			$sPersonalUnitAppMsg = '$' . pack_personal_unit_app_val;
 		}
-		if (isset($aDatas['personal_website']) && $aDatas['personal_website'] == '1') {
+		if (isset($data['personal_website']) && $data['personal_website'] == '1') {
 			$sPersonalUnitWebMsg = '$' . pack_personal_website_val;
 		}
 	}else{
-		if (isset($aDatas['personal_unit_app']) && $aDatas['personal_unit_app'] == '1') {
+		if (isset($data['personal_unit_app']) && $data['personal_unit_app'] == '1') {
 			$sPersonalUnitAppMsg = '$' . personal_unit_app_val;
 		}
-		if (isset($aDatas['personal_website']) && $aDatas['personal_website'] == '1') {
+		if (isset($data['personal_website']) && $data['personal_website'] == '1') {
 			$sPersonalUnitWebMsg = '$' . personal_website_val;
 		}
 	}
 
-	$sPersonalUnitAppCanadaMsg = (isset($aDatas['personal_unit_app_ca']) && $aDatas['personal_unit_app_ca'] == '1') ? '$' . personal_unit_app_canada : 0;
-	$sWebsiteLinkMsg = empty($aDatas['website_link']) ? '' : $aDatas['website_link'];
-	$sPersonalUrlMsg = (isset($aDatas['personal_url']) && $aDatas['personal_url'] == '1') ? '$' . personal_url_val : 0;
-	$sSubscriptionUpdatesMsg = (isset($aDatas['subscription_updates']) && $aDatas['subscription_updates'] == '1') ? '$' . subscription_updates_val : 0;
-	$sAppColorMsg = (isset($aDatas['app_color']) && $aDatas['app_color'] == '1') ? '$' . app_color_val : 0;
+	$sPersonalUnitAppCanadaMsg = (isset($data['personal_unit_app_ca']) && $data['personal_unit_app_ca'] == '1') ? '$' . personal_unit_app_canada : 0;
+	$sWebsiteLinkMsg = empty($data['website_link']) ? '' : $data['website_link'];
+	$sPersonalUrlMsg = (isset($data['personal_url']) && $data['personal_url'] == '1') ? '$' . personal_url_val : 0;
+	$sSubscriptionUpdatesMsg = (isset($data['subscription_updates']) && $data['subscription_updates'] == '1') ? '$' . subscription_updates_val : 0;
+	$sAppColorMsg = (isset($data['app_color']) && $data['app_color'] == '1') ? '$' . app_color_val : 0;
 
 	
-	$lg = (isset($aDatas['newsletters_design']) && $aDatas['newsletters_design']=='CE') ? 'E' : $aDatas['newsletters_design'];
-	$decrypted = decryptIt($aDatas['cv_account']);
+	$lg = (isset($data['newsletters_design']) && $data['newsletters_design']=='CE') ? 'E' : $data['newsletters_design'];
+	$decrypted = decryptIt($data['cv_account']);
 	$mask = empty($encrypted) ? '' : maskCreditCard($decrypted);
-	$sNewsLetterDesign=(($aDatas['emailing']=='1') ? '$'.emailing_1 : (($aDatas['emailing']=='2') ? '$'.emailing_2 : 0));
+	$sNewsLetterDesign=(($data['emailing']=='1') ? '$'.emailing_1 : (($data['emailing']=='2') ? '$'.emailing_2 : 0));
 
-	$printingT = newsletter_print_option($aDatas);
+	$printingT = newsletter_print_option($data);
 
-	if($aDatas['select_email'] == 'W' && $lg == 'E') {
-        $mailContent = $aDatas['welcome_email_english'];
-    }elseif($aDatas['select_email'] == 'W' && $lg == 'S'){
-        $mailContent = $aDatas['welcome_email_spanish'];
-    }elseif($aDatas['select_email'] == 'W' && $lg == 'CE') {
-        $mailContent = $aDatas['welcome_email_canada_english'];
-    }elseif($aDatas['select_email'] == 'W' && $lg == 'F') {
-        $mailContent = $aDatas['welcome_email_french'];
-    }elseif($aDatas['select_email'] == 'C' && $lg == 'S'){
-        $mailContent = $aDatas['current_email_spanish'];
-    }elseif($aDatas['select_email'] == 'C' && $lg == 'E'){
-        $mailContent = $aDatas['current_email_english'];
-    }elseif($aDatas['select_email'] == 'C' && $lg == 'CE'){
-        $mailContent = $aDatas['current_email_canada_english'];
-    }elseif($aDatas['select_email'] == 'C' && $lg == 'F'){
-        $mailContent = $aDatas['current_email_french'];
+	if($data['select_email'] == 'W' && $lg == 'E') {
+        $mailContent = $data['welcome_email_english'];
+    }elseif($data['select_email'] == 'W' && $lg == 'S'){
+        $mailContent = $data['welcome_email_spanish'];
+    }elseif($data['select_email'] == 'W' && $lg == 'CE') {
+        $mailContent = $data['welcome_email_canada_english'];
+    }elseif($data['select_email'] == 'W' && $lg == 'F') {
+        $mailContent = $data['welcome_email_french'];
+    }elseif($data['select_email'] == 'C' && $lg == 'S'){
+        $mailContent = $data['current_email_spanish'];
+    }elseif($data['select_email'] == 'C' && $lg == 'E'){
+        $mailContent = $data['current_email_english'];
+    }elseif($data['select_email'] == 'C' && $lg == 'CE'){
+        $mailContent = $data['current_email_canada_english'];
+    }elseif($data['select_email'] == 'C' && $lg == 'F'){
+        $mailContent = $data['current_email_french'];
     }
 
-    $sFname = explode(" ", $aDatas['name']);
+    $sFname = explode(" ", $data['name']);
 
 	$subject = mail_subject[$lg];
 	$message = '<html><body>';
@@ -83,171 +83,171 @@ function directorMail($aDatas){
 	$message .= $mailContent . "</br>";
 	$message .= '<p style="font-size:16px;">'.warmly[$lg].',<br>'.UpdateBy().'</p><br><br>';
 
-	if (!empty($aDatas['contact'])) {
-	    $message .= mailFormat(contact[$lg], strip_tags($aDatas['contact']));
+	if (!empty($data['contact'])) {
+	    $message .= mailFormat(contact[$lg], strip_tags($data['contact']));
 	}
 
-	if (!empty($aDatas['name'])) {
-	    $message .= mailFormat(name[$lg], strip_tags($aDatas['name']));
+	if (!empty($data['name'])) {
+	    $message .= mailFormat(name[$lg], strip_tags($data['name']));
 	}
 
-	if (!empty($aDatas['consultant_number'])) {
-	    $message .= mailFormat(consultant_number[$lg], strip_tags($aDatas['consultant_number']));
+	if (!empty($data['consultant_number'])) {
+	    $message .= mailFormat(consultant_number[$lg], strip_tags($data['consultant_number']));
 	}
 
-	if (!empty($aDatas['mk_director'])) {
-	    $message .= mailFormat(mk_director[$lg], strip_tags($aDatas['mk_director']));
+	if (!empty($data['mk_director'])) {
+	    $message .= mailFormat(mk_director[$lg], strip_tags($data['mk_director']));
 	}
 
-	if (!empty($aDatas['intouch_password'])) {
-	    $message .= mailFormat(intouch_password[$lg], strip_tags($aDatas['intouch_password']));
+	if (!empty($data['intouch_password'])) {
+	    $message .= mailFormat(intouch_password[$lg], strip_tags($data['intouch_password']));
 	}
 
-	if (!empty($aDatas['unit_number'])) {
-	    $message .= mailFormat(unit_number[$lg], strip_tags($aDatas['unit_number']));
+	if (!empty($data['unit_number'])) {
+	    $message .= mailFormat(unit_number[$lg], strip_tags($data['unit_number']));
 	}
 
-	if (!empty($aDatas['package'])) {
-	    $message .= mailFormat(package[$lg], strip_tags($aDatas['package']));
+	if (!empty($data['package'])) {
+	    $message .= mailFormat(package[$lg], strip_tags($data['package']));
 	}
 
-	if (!empty($aDatas['total_text_program'])) {
-	    $message .= mailFormat(total_text_program[$lg], $aDatas['total_text_program']);
+	if (!empty($data['total_text_program'])) {
+	    $message .= mailFormat(total_text_program[$lg], $data['total_text_program']);
 	}
 
-	if (!empty($aDatas['total_text_program7'])) {
-	    $message .= mailFormat(total_text_program7[$lg], $aDatas['total_text_program7']);
+	if (!empty($data['total_text_program7'])) {
+	    $message .= mailFormat(total_text_program7[$lg], $data['total_text_program7']);
 	}
 
-	if (!empty($aDatas['unit_size'])) {
-	    $message .= mailFormat(unit_size[$lg], $aDatas['unit_size']);
+	if (!empty($data['unit_size'])) {
+	    $message .= mailFormat(unit_size[$lg], $data['unit_size']);
 	}
 
-	if (!empty($aDatas['hidden_newsletter'])) {
-	    $message .= mailFormat(hidden_newsletter[$lg], $aDatas['hidden_newsletter']);
+	if (!empty($data['hidden_newsletter'])) {
+	    $message .= mailFormat(hidden_newsletter[$lg], $data['hidden_newsletter']);
 	}
 
-	if (!empty($aDatas['distribution_one'])) {
-	    $message .= mailFormat(distribution_one[$lg], $aDatas['distribution_one']);
+	if (!empty($data['distribution_one'])) {
+	    $message .= mailFormat(distribution_one[$lg], $data['distribution_one']);
 	}
 
-	if (!empty($aDatas['package_value'])) {
-	    $message .= mailFormat(package_value[$lg], $aDatas['package_value']);
+	if (!empty($data['package_value'])) {
+	    $message .= mailFormat(package_value[$lg], $data['package_value']);
 	}
 
-	if (!empty($aDatas['distribution_two'])) {
-	    $message .= mailFormat(distribution_two[$lg], $aDatas['distribution_two']);
+	if (!empty($data['distribution_two'])) {
+	    $message .= mailFormat(distribution_two[$lg], $data['distribution_two']);
 	}
 
-	if (!empty($aDatas['closing_ecards'])) {
-	    $message .= mailFormat(closing_ecards[$lg], $aDatas['closing_ecards']);
+	if (!empty($data['closing_ecards'])) {
+	    $message .= mailFormat(closing_ecards[$lg], $data['closing_ecards']);
 	}
 
-	if (!empty($aDatas['birthday_one']) && $aDatas['birthday_one']==2) {
+	if (!empty($data['birthday_one']) && $data['birthday_one']==2) {
 	    $message .= mailFormat(birthday_one[$lg], 'X - 2 pts');
 	}
 
-	if (!empty($aDatas['birthday_one']) && $aDatas['birthday_one']==1) {
+	if (!empty($data['birthday_one']) && $data['birthday_one']==1) {
 	    $message .= mailFormat(birthday_one1[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['anniversary_one']) && $aDatas['anniversary_one']==2) {
+	if (!empty($data['anniversary_one']) && $data['anniversary_one']==2) {
 	    $message .= mailFormat(anniversary_one[$lg], 'X - 2 pts');
 	}
 
-	if (!empty($aDatas['anniversary_one']) && $aDatas['anniversary_one']==1) {
+	if (!empty($data['anniversary_one']) && $data['anniversary_one']==1) {
 	    $message .= mailFormat(anniversary_two[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_one'])) {
+	if (!empty($data['status_one'])) {
 	    $message .= mailFormat(status_one[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_two'])) {
+	if (!empty($data['status_two'])) {
 	    $message .= mailFormat(status_two[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_three'])) {
+	if (!empty($data['status_three'])) {
 	    $message .= mailFormat(status_three[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_four'])) {
+	if (!empty($data['status_four'])) {
 	    $message .= mailFormat(status_four[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_five'])) {
+	if (!empty($data['status_five'])) {
 	    $message .= mailFormat(status_five[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_six'])) {
+	if (!empty($data['status_six'])) {
 	    $message .= mailFormat(status_six[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_seven'])) {
+	if (!empty($data['status_seven'])) {
 	    $message .= mailFormat(status_seven[$lg], 'X - 2 pts');
 	}
 
-	if (!empty($aDatas['amount_box'])) {
-	    $message .= mailFormat(amount_box[$lg], $aDatas['amount_box']);
+	if (!empty($data['amount_box'])) {
+	    $message .= mailFormat(amount_box[$lg], $data['amount_box']);
 	}
 
-	if (!empty($aDatas['accumulative'])) {
+	if (!empty($data['accumulative'])) {
 	    $message .= mailFormat(accumulative[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['monthly'])) {
+	if (!empty($data['monthly'])) {
 	    $message .= mailFormat(monthly[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_seven0'])) {
+	if (!empty($data['status_seven0'])) {
 	    $message .= mailFormat(status_seven0[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_eight'])) {
+	if (!empty($data['status_eight'])) {
 	    $message .= mailFormat(status_eight[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['status_nine'])) {
+	if (!empty($data['status_nine'])) {
 	    $message .= mailFormat(status_nine[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['last_one']) && $aDatas['last_one'] == '2') {
+	if (!empty($data['last_one']) && $data['last_one'] == '2') {
 	    $message .= mailFormat(last_one[$lg], 'X - 2 pts');
 	}
 
-	if (!empty($aDatas['last_one']) && $aDatas['last_one'] == '1') {
+	if (!empty($data['last_one']) && $data['last_one'] == '1') {
 	    $message .= mailFormat(last_two[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['gift_one']) && $aDatas['gift_one'] == 3) {
+	if (!empty($data['gift_one']) && $data['gift_one'] == 3) {
 	    $message .= mailFormat(gift_one[$lg], 'X - 3 pts');
 	}
 
-	if (!empty($aDatas['gift_five']) && $aDatas['gift_five'] == '2') {
+	if (!empty($data['gift_five']) && $data['gift_five'] == '2') {
 	    $message .= mailFormat(gift_five[$lg], 'X - 2 pts');
 	}
 
-	if (!empty($aDatas['star_program']) && $aDatas['star_program'] == '2') {
+	if (!empty($data['star_program']) && $data['star_program'] == '2') {
 	    $message .= mailFormat(star_program[$lg], 'X - 2 pts');
 	}
 
-	if (!empty($aDatas['consultant_one'])) {
+	if (!empty($data['consultant_one'])) {
 	    $message .= mailFormat(consultant_one[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['consultant_two'])) {
+	if (!empty($data['consultant_two'])) {
 	    $message .= mailFormat(consultant_two[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['consultant_three'])) {
+	if (!empty($data['consultant_three'])) {
 	    $message .= mailFormat(consultant_three[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['consultant_five'])) {
+	if (!empty($data['consultant_five'])) {
 	    $message .= mailFormat(consultant_five[$lg], 'X - 1 pts');
 	}
 
-	if (!empty($aDatas['consultant_six'])) {
+	if (!empty($data['consultant_six'])) {
 	    $message .= mailFormat(consultant_six[$lg], 'X - 1 pts');
 	}
 
@@ -255,56 +255,56 @@ function directorMail($aDatas){
 	    $message .= mailFormat(newsletter_design[$lg], strip_tags($sNewsLetterDesign));
 	}
 
-	if (!empty($aDatas['email_newsletter'])) {
+	if (!empty($data['email_newsletter'])) {
 	    $message .= mailFormat(email_news[$lg], '$'.email_newsletter);
 	}
 
-	if (!empty($aDatas['digital_biz_card'])) {
+	if (!empty($data['digital_biz_card'])) {
 	    $message .= mailFormat(digitalBizCard[$lg], '$'.DIGITAL_BIZ_CARD);
 	}
 
-	if (!empty($aDatas['canada_service'])) {
+	if (!empty($data['canada_service'])) {
 	    $message .= mailFormat(canadaService[$lg], '$'.canada_service);
 	}
 
-	if (!empty($aDatas['facebook'])) {
+	if (!empty($data['facebook'])) {
 	    $message .= mailFormat(facebook_news[$lg], '$'.facebook);
 	}
 
-	if (!empty($aDatas['facebook_everything'])) {
+	if (!empty($data['facebook_everything'])) {
 	    $message .= mailFormat(facebook_everything_news[$lg], '$'.facebook_everything);
 	}
 
-	if (!empty($aDatas['other_language_newsletter'])) {
+	if (!empty($data['other_language_newsletter'])) {
 	    $message .= mailFormat(other_lang_newsletter[$lg], '$'.other_language_newsletter);
 	}
 
-	if (!empty($aDatas['newsletter_color'])) {
-   		$message .= mailFormat(newsletter_color_constant_val[$lg], $aDatas['newsletter_color']);
+	if (!empty($data['newsletter_color'])) {
+   		$message .= mailFormat(newsletter_color[$lg], $data['newsletter_color']);
 	}
 
-	if (!empty($aDatas['newsletter_black_white'])) {
-	    $message .= mailFormat(newsletter_black_white[$lg], $aDatas['newsletter_black_white']);
+	if (!empty($data['newsletter_black_white'])) {
+	    $message .= mailFormat(newsletter_black_white[$lg], $data['newsletter_black_white']);
 	}
 
 	if (!empty($printingT)) {
 	    $message .= mailFormat(print_option[$lg], $printingT);
 	}
 
-	if (!empty($aDatas['email'])) {
-	    $message .= mailFormat(email[$lg], strip_tags($aDatas['email']));
+	if (!empty($data['email'])) {
+	    $message .= mailFormat(email[$lg], strip_tags($data['email']));
 	}
 
-	if (!empty($aDatas['cell_number'])) {
-	    $message .= mailFormat(cell_number[$lg], strip_tags($aDatas['cell_number']));
+	if (!empty($data['cell_number'])) {
+	    $message .= mailFormat(cell_number[$lg], strip_tags($data['cell_number']));
 	}
 
-	if (!empty($aDatas['reffered_by'])) {
-	    $message .= mailFormat(reffered_by[$lg], strip_tags($aDatas['reffered_by']));
+	if (!empty($data['reffered_by'])) {
+	    $message .= mailFormat(reffered_by[$lg], strip_tags($data['reffered_by']));
 	}
 
-	if (!empty($aDatas['first_bill_date'])) {
-	    $message .= mailFormat(first_bill_date[$lg], strip_tags($aDatas['first_bill_date']));
+	if (!empty($data['first_bill_date'])) {
+	    $message .= mailFormat(first_bill_date[$lg], strip_tags($data['first_bill_date']));
 	}
 
 	if (!empty($decrypted)) {
@@ -312,8 +312,8 @@ function directorMail($aDatas){
 	}
 
 
-	if (!empty($aDatas['cu_routing'])) {
-	    $message .= mailFormat(cu_routing[$lg], strip_tags($aDatas['cu_routing']));
+	if (!empty($data['cu_routing'])) {
+	    $message .= mailFormat(cu_routing[$lg], strip_tags($data['cu_routing']));
 	}
 
 	if (!empty($sPersonalUnitAppMsg)) {
@@ -348,14 +348,14 @@ function directorMail($aDatas){
 	    $message .= mailFormat(mask[$lg], strip_tags(mysqli_real_escape_string($sConnection, $mask)) );
 	}
 
-	if (!empty($aDatas['package_pricing'])) {
-	    $message .= mailFormat(total_charges[$lg], $aDatas['package_pricing']);
+	if (!empty($data['package_pricing'])) {
+	    $message .= mailFormat(total_charges[$lg], $data['package_pricing']);
 	}
 	$message .= "</body></html>";
 	
 	$CI->email->set_mailtype("html");
     $CI->email->from('office@unitassistant.com', 'Unit Assistant Team');
-    $CI->email->to($aDatas['email']);
+    $CI->email->to($data['email']);
     $CI->email->bcc('office@unitassistant.com');
     $CI->email->subject($subject);
     $CI->email->message($message);

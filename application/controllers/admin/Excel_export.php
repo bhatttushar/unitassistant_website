@@ -586,7 +586,7 @@ class Excel_export extends CI_Controller {
         $objWriter = new PHPExcel_Writer_Excel2007($object);
         
         if ($url == 'excel-save') {
-            $objWriter->save('./assets/download_excel/UA_Client_'.date('m-d-y').'.xlsx');
+            $objWriter->save('./assets/download_excel/UA_Client.xlsx');
         }else{
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8');
             header('Content-Disposition: attachment;filename="UA_Client.xlsx"');

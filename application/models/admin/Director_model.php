@@ -37,7 +37,7 @@ class Director_model extends CI_Model {
     return $this->db->update('newsletter_other_details');
   }
 
-  function update_design_dis_approve_status($id_newsletter){
+  function update_design_disapprove_status($id_newsletter){
     $this->db->set(array('design_approve_status'=>'2', 'approved_date'=>date('Y-m-d H:i:s')));
     $this->db->where('id_newsletter', $id_newsletter);
     return $this->db->update('newsletter_other_details');
@@ -117,14 +117,11 @@ class Director_model extends CI_Model {
     $this->db->from('newsletter_general_info AS ng');
     $this->db->join('newsletter_packaging AS np', 'np.id_newsletter=ng.id_newsletter', 'left');
     $this->db->join('newsletter_design_info AS nd', 'nd.id_newsletter=ng.id_newsletter', 'left');
-    $this->db->join('newsletter_other_details AS no', 'no.id_newsletter=ng.id_newsletter', 'left');
+    $this->db->join('newsletter_other_details AS no','no.id_newsletter=ng.id_newsletter','left');
     $this->db->where( array('ng.deleted'=>'0', 'ng.id_newsletter'=>$aLanguage['id_newsletter']));
     $this->db->query('SET SQL_BIG_SELECTS=1');
-    $detail = $this->db->get()->result_array();
-    $result = newsletter_message_mail($detail, $aLanguage);
-    if ($result == TRUE) {
-      return TRUE;
-    }
+    $detail = $this->db->get()->row_array();
+    return newsletter_message_mail($detail, $aLanguage);
   }
 
   function saveNewsletterMsg($newsletter_messages){

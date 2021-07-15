@@ -165,9 +165,6 @@
   </div>
 </div>
 
-<div class="overlay_ajax"> <p>Loading Please Wait...</p> </div>
-
-
 <script src="<?php echo base_url('assets/plugins/summernote/summernote.min.js'); ?>"></script>
 
 <script type="text/javascript">

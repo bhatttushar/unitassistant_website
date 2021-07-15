@@ -3,12 +3,12 @@
 }
 if (!function_exists('get_instance')) {
 	function get_instance() {
-		$CI = &get_instance();
+		$CI=&get_instance();
 	}
 }
 
 function getIdNewsletter($name){
-    $CI = get_instance();
+    $CI=get_instance();
     $CI->db->select('id_newsletter');
     $CI->db->from('newsletter_general_info');
     $CI->db->where('name', $name);
@@ -16,8 +16,8 @@ function getIdNewsletter($name){
 }
 
 function Get_email_content($lang){
-	$CI = get_instance();
-	$lang = (!empty($lang) ? $lang : 'welcome_english');
+	$CI=get_instance();
+	$lang=(!empty($lang) ? $lang : 'welcome_english');
 	if($lang == 'welcome_english'){
 		return $CI->db->get('client_messages')->row()->welcome_english;
 	}
@@ -52,7 +52,7 @@ function Get_email_content($lang){
 
 function GetPackageValue($PakcageType, $unitsize) {
 
-    $aPackageValues = 0;
+    $aPackageValues=0;
 	//Sapphire
     if($PakcageType == 'S') {  
         if($unitsize>=0 && $unitsize <=29){ $aPackageValues =  Sapphire0;}
@@ -216,20 +216,15 @@ function textSystem($package){
 }
 
 function Get_design_approve_status($design_one,$design_approve_status){
-	if($design_one == 0 || $design_one == 3) {
+    if($design_one == 0) {
         return '<span>N/A</span>';
     } else {
         if($design_approve_status == 1){
             return '<span class="label label-success">Approved</span>';
-        }elseif($design_approve_status == 2){
+        }elseif($design_approve_status == 0 || $design_approve_status == 2){
             return '<span class="label label-danger">Pending</span>';
-        }elseif($design_approve_status == 0){
-            /*return '<span>None</span>';*/
-            return '<span>N/A</span>';
         }elseif($design_approve_status == 3){
              return '<span class="label label-primary">Review</span>';
-        }elseif($design_one == 0 || $design_one == 3){
-            return '<span>N/A</span>';
         }
     }
 }
@@ -390,7 +385,7 @@ function getTableFields($table){
 	}elseif ($table == 'emails') {
 		$data = array('id_newsletter', 'welcome_email_english', 'welcome_email_canada_english', 'welcome_email_spanish', 'welcome_email_french', 'current_email_english', 'current_email_canada_english', 'current_email_spanish', 'current_email_french');
 	}elseif ($table == 'packaging') {
-		$data = array('id_newsletter', 'spanish_consultant', 'socialM', 'package', 'misc_charge', 'misc_description', 'facebook', 'facebook_everything', 'email_newsletter', 'emailing', 'digital_biz_card', 'digital_biz_link', 'canada_service', 'package_pricing', 'sub_total', 'credit_notes', 'billing_alert', 'unit_size', 'point_credit', 'cu_routing', 'cv_account', 'account_detail', 'cc_number', 'cc_code', 'cc_expir_date', 'cc_zip', 'package_value', 'special_creadit', 'package_note', 'invoice_note', 'nsd_client', 'total_text_program', 'total_text_program7', 'prospect_system', 'free', 'magic_booker', 'other_language_newsletter', 'personal_unit_app', 'personal_unit_app_ca', 'personal_website', 'website_link', 'catalog_link', 'shop_link', 'boss_babe_link', 'personal_url', 'subscription_updates', 'app_color', 'newsletter_color', 'newsletter_black_white', 'month_packet_postage', 'consultant_packet_postage', 'consultant_bundles', 'consistency_gift', 'reds_program_gift', 'stars_program_gift', 'gift_wrap_postpage', 'one_rate_postpage', 'month_blast_flyer', 'flyer_ecard_unit', 'unit_challenge_flyer', 'team_building_flyer', 'wholesale_promo_flyer', 'postcard_design', 'postcard_edit', 'ecard_unit', 'speciality_postcard', 'card_with_gift', 'greeting_card', 'birthday_brownie', 'birthday_starbucks', 'anniversary_starbucks', 'referral_credit', 'special_credit', 'cc_billing', 'customer_newsletter', 'picture_texting', 'keyword', 'client_setup', 'nl_flyer', 'point_value', 'review_date', 'consultant_communication', 'last_email_update_date', 'hidden_point_values');
+		$data = array('id_newsletter', 'spanish_consultant', 'socialM', 'package', 'misc_charge', 'misc_description', 'facebook', 'facebook_everything', 'email_newsletter', 'emailing', 'digital_biz_card', 'digital_biz_link', 'canada_service', 'package_pricing', 'sub_total', 'credit_notes', 'billing_alert', 'unit_size', 'point_credit', 'cu_routing', 'cv_account', 'account_detail', 'cc_number', 'cc_code', 'cc_expir_date', 'cc_zip', 'package_value', 'special_creadit', 'package_note', 'invoice_note', 'nsd_client', 'total_text_program', 'total_text_program7', 'prospect_system', 'free', 'magic_booker', 'other_language_newsletter', 'personal_unit_app', 'personal_unit_app_ca', 'personal_website', 'website_link', 'catalog_link', 'shop_link', 'boss_babe_link', 'personal_url', 'subscription_updates', 'app_color', 'newsletter_color', 'newsletter_black_white', 'month_packet_postage', 'consultant_packet_postage', 'consultant_bundles', 'consistency_gift', 'reds_program_gift', 'stars_program_gift', 'gift_wrap_postpage', 'one_rate_postpage', 'month_blast_flyer', 'flyer_ecard_unit', 'unit_challenge_flyer', 'team_building_flyer', 'wholesale_promo_flyer', 'postcard_design', 'postcard_edit', 'ecard_unit', 'speciality_postcard', 'card_with_gift', 'greeting_card', 'birthday_brownie', 'birthday_starbucks', 'anniversary_starbucks', 'referral_credit', 'special_credit', 'cc_billing', 'customer_newsletter', 'picture_texting', 'keyword', 'client_setup', 'nl_flyer', 'point_value', 'review_date', 'consultant_communication', 'last_email_update_date');
 	}elseif('design_reports'){
 		$data = array('id_newsletter','hidden_newsletter','design_two','wholesale_amount','wholesale_section','court_sale','court_sale_director','court_sharing','court_sharing_director','birthday_rec','birthday_anniversary','wholesale_remove_name','wholesale_remove','special_news_request','beatly_url','beatly_url_one', 'beatly_url_two','cu_routing','cv_account');
 	}elseif('reports'){
@@ -520,65 +515,64 @@ function newsletter_message_mail($data, $aLanguage){
 
     $CI = get_instance();
 
-    $data[0]['beatly_url'] = ($data[0]['beatly_url'] != '' ?  "http://".$data[0]['beatly_url'] : '');
-    $data[0]['beatly_url_one'] = ($data[0]['beatly_url_one'] != '' ? "http://".$data[0]['beatly_url_one'] : '');
-    $data[0]['beatly_url_two'] = ($data[0]['beatly_url_two'] != '' ? "http://".$data[0]['beatly_url_two'] : '');
+    $data['beatly_url']=($data['beatly_url']!= '' ? "http://".$data['beatly_url'] : '');
+    $data['beatly_url_one']=($data['beatly_url_one']!=''?"http://".$data['beatly_url_one'] : '');
+    $data['beatly_url_two']=($data['beatly_url_two']!=''?"http://".$data['beatly_url_two'] : '');
 
-    if($data[0]['newsletters_design'] == 'E' || $data[0]['newsletters_design'] == 'CE'){
+    if($data['newsletters_design'] == 'E' || $data['newsletters_design'] == 'CE'){
         $lang = $aLanguage['english'];
-    }elseif ($data[0]['newsletters_design'] == 'S') {
+    }elseif ($data['newsletters_design'] == 'S') {
         $lang = $aLanguage['spanish'];
-    }elseif ($data[0]['newsletters_design'] == 'F') {
+    }elseif ($data['newsletters_design'] == 'F') {
         $lang = $aLanguage['french'];
     }
 
-    $lg = ($data[0]['newsletters_design']=='CE') ? 'E' : $data[0]['newsletters_design'];
+    $lg = ($data['newsletters_design']=='CE') ? 'E' : $data['newsletters_design'];
 
     $subject = lang_label('news_ready_to_view', $lg);
     $sContent = "<html><body>";
-    $sContent .= "<h4 style='font-size:16px;'>".hello[$lg]."  <strong>".$data[0]['name']."</strong>,</h4>";
+    $sContent .= "<h4 style='font-size:16px;'>".hello[$lg]."  <strong>".$data['name']."</strong>,</h4>";
     $sContent .= "<h4 style='font-size:16px;'>".$lang."</h4>";
 
-    if(!empty($data[0]['beatly_url'])) {
-        $sContent .="<h4 style='font-size:16px;'><a href='".$data[0]['beatly_url']."'>".$data[0]['beatly_url']."</a></h4>";
+    if(!empty($data['beatly_url'])) {
+        $sContent .="<h4 style='font-size:16px;'><a href='".$data['beatly_url']."'>".$data['beatly_url']."</a></h4>";
     }
 
-    if(!empty($data[0]['beatly_url_one'])){
-         $sContent .= "<h4 style='font-size:16px;'><a href='".$data[0]['beatly_url_one']."'>".$data[0]['beatly_url_one']."</a></h4>";
+    if(!empty($data['beatly_url_one'])){
+         $sContent .= "<h4 style='font-size:16px;'><a href='".$data['beatly_url_one']."'>".$data['beatly_url_one']."</a></h4>";
     }
 
-    if(!empty($data[0]['beatly_url_two'])){
-        $sContent .= "<h4 style='font-size:16px;'><a href='".$data[0]['beatly_url_two']."'>".$data[0]['beatly_url_two']."</a></h4>";
+    if(!empty($data['beatly_url_two'])){
+        $sContent .= "<h4 style='font-size:16px;'><a href='".$data['beatly_url_two']."'>".$data['beatly_url_two']."</a></h4>";
     }
 
     $sContent .= "<h4><strong style='font-size:16px;'>".lang_label('click_below_to_approve', $lg)."</strong></h4>";
-    $sContent .= "<a href='".base_url('admin/approve-newsletter-design/'.$data[0]['id_newsletter'])."' title='".APPROVE[$lg]."' style='background-color:#44c767;-moz-border-radius:28px;-webkit-border-radius:28px;margin: 10px 20px 10px 0px;border-radius:28px;border:1px solid #44c767;display:inline-block;cursor:pointer;color:#ffffff;font-family:Arial;font-size:17px;padding:8px 24px;text-decoration:none;text-shadow:0px 1px 0px #2f6627;'>".APPROVE[$lg]."</a>";
+    $sContent .= "<a href='".base_url('admin/approve-newsletter-design/'.$data['id_newsletter'])."' title='".APPROVE[$lg]."' style='background-color:#44c767;-moz-border-radius:28px;-webkit-border-radius:28px;margin: 10px 20px 10px 0px;border-radius:28px;border:1px solid #44c767;display:inline-block;cursor:pointer;color:#ffffff;font-family:Arial;font-size:17px;padding:8px 24px;text-decoration:none;text-shadow:0px 1px 0px #2f6627;'>".APPROVE[$lg]."</a>";
     $sContent .= "<a href='https://www.unitassistant.com/current-newsletter-clients' title='".CHANGES[$lg]."' style='background-color:#46b8da;-moz-border-radius:28px;-webkit-border-radius:28px;margin: 10px 20px 10px 0px;border-radius:28px;border:1px solid #44c767;display:inline-block;cursor:pointer;color:#ffffff;font-family:Arial;font-size:17px;padding:8px 24px;text-decoration:none;text-shadow:0px 1px 0px #2f6627;'>".CHANG_NEED[$lg]."</a>";
     $sContent .= '<h4 style="font-size:16px;">'.lang_label('love_bless', $lg).'.</h4>';
     $sContent .= '<h4><strong>'.lang_label('cheryl_staff', $lg).'</strong></h4>';
     $sContent .= '<h4><strong style="font-size:16px;">Unit Assistant </strong></h4>';
-    $sContent .= '<h4><strong style="font-size:16px;">Office@unitassistant.com</strong></h4>';
+    $sContent .= '<h4><strong style="font-size:16px;">office@unitassistant.com</strong></h4>';
     $sContent .= '<h4><strong style="font-size:16px;">* '.lang_label('remember_note', $lg).'</strong></h4>';
     $sContent .= "</body></html>";
 
-    if($data[0]['beatly_url'] !='' || $data[0]['beatly_url_one'] !='' || $data[0]['beatly_url_two'] ){
-        if(($data[0]['design_approve_status'] == '3') || ($data[0]['design_approve_status'] == '2')){
-
+    if($data['beatly_url']!=''||$data['beatly_url_one']!=''||$data['beatly_url_two']){
+        if(($data['design_approve_status']=='3') || ($data['design_approve_status']=='2')){
             $CI->email->set_mailtype("html");
             $CI->email->from('office@unitassistant.com', 'Unit Assistant');
-            $CI->email->to($data[0]['email']);
+            $CI->email->to($data['email']);
             $CI->email->subject($subject);
             $CI->email->message($sContent);
             $sSend = $CI->email->send();
             
             if($sSend){
                 $CI->db->set('last_email_update_date', date("Y-m-d H:i:s"));
-                $CI->db->where('id_newsletter', $data[0]['id_newsletter']);
+                $CI->db->where('id_newsletter', $data['id_newsletter']);
                 $res = $CI->db->update('newsletter_packaging');
                 if ($res) {
                     $sDetail = htmlentities(($sContent), ENT_QUOTES);
-                    $insertData = array('id_newsletter'=>$data[0]['id_newsletter'], 'id_admin'=>'1', 'purpose'=>'Approval mail', 'detail'=>$sDetail, 'created_at'=>date("Y-m-d H:i:s"), 'updated_at'=>date("Y-m-d H:i:s"));
-                    $CI->db->insert('email_records', $insertData);
+                    $insertData = array('id_newsletter'=>$data['id_newsletter'], 'id_admin'=>'1', 'purpose'=>'Approval mail', 'detail'=>$sDetail, 'created_at'=>date("Y-m-d H:i:s"), 'updated_at'=>date("Y-m-d H:i:s"));
+                    return $CI->db->insert('email_records', $insertData);
                 }
             }
         }

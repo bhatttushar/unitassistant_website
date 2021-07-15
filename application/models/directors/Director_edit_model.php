@@ -449,7 +449,7 @@ class Director_edit_model extends CI_Model {
     $this->db->select('n.id_newsletter as id_newsletter_client, e.*');
     $this->db->from('email_records AS e');
     $this->db->join($table.'_general_info AS n', 'e.id_newsletter = n.id_newsletter', 'left');
-    $this->db->where( array('e.id_newsletter'=>$id_newsletter, 'e.deleted'=>'0', 'n.deleted'=>'0') );
+    $this->db->where(array('e.id_newsletter'=>$id_newsletter, 'e.deleted'=>'0', 'n.deleted'=>'0', 'e.purpose !='=>'Add Note'));
     $this->db->group_by('e.created_at');
     $this->db->order_by('e.created_at', 'DESC');
     return $this->db->get()->result_array();

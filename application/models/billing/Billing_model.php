@@ -49,7 +49,7 @@ class Billing_Model extends CI_Model {
 			$this->db->where($searchQuery);
 			$this->db->where('deleted', '0');
 			$this->db->order_by($columnName, $columnSortOrder);
-			//$this->db->limit($rowperpage, $row);
+			$this->db->limit($rowperpage, $row);
 		}elseif ($columnName == 'account_balance') {
 			$this->db->select('n.first_bill_date, n.name, n.cell_number,n.email, n.consultant_number, n.contract_update_date, (SUM(i.total) - SUM(i.total_paid)) as account_balance, n.id_newsletter');
 			$this->db->from('newsletter_general_info AS n');
@@ -58,17 +58,18 @@ class Billing_Model extends CI_Model {
 			$this->db->where(array('n.deleted'=>'0', 'i.deleted'=>'0', 'i.total'=>'0'));
 			$this->db->group_by('i.id_newsletter');
 			$this->db->order_by($columnName, $columnSortOrder);
-			//$this->db->limit($rowperpage, $row);
+			$this->db->limit($rowperpage, $row);
 		}else {
 			$this->db->select('contract_update_date, id_newsletter, first_bill_date, name, cell_number, email, consultant_number');
 			$this->db->from('newsletter_general_info');
 			$this->db->where($searchQuery);
 			$this->db->where('deleted', '0');
 			$this->db->order_by($columnName, $columnSortOrder);
-			//$this->db->limit($rowperpage, $row);
+			$this->db->limit($rowperpage, $row);
 		}
-
+		
 		$user_data = $this->db->get()->result_array();
+
 		return array('user_data'=>$user_data, 'id_newsletters'=>$id_newsletters, 'totalRecordFilter'=>$totalRecordwithFilter, 'totalRecords'=>$totalRecords);
 	}
 
@@ -90,11 +91,13 @@ class Billing_Model extends CI_Model {
 		$this->db->select('id_newsletter, invoice_name');
 		$this->db->from('invoices');
 		$this->db->where('id_invoice', $id_invoice);
+		$this->db->limit(1);
 		$invoice = $this->db->get()->row_array();
 
 		$this->db->select('SUM(due_amount) As due');
 		$this->db->from('invoices');
 		$this->db->where(array('id_newsletter'=>$invoice['id_newsletter'], 'id_invoice'=>$id_invoice));
+		$this->db->limit(1);
 		$due_balance = $this->db->get()->row()->due;
 
 		if ($due_balance < 0) {
@@ -105,6 +108,7 @@ class Billing_Model extends CI_Model {
         @unlink($filename);
 
         $this->db->where('id_invoice', $id_invoice);
+        $this->db->limit(1);
         return $this->db->delete('invoices');
 	}
 
@@ -1465,7 +1469,7 @@ class Billing_Model extends CI_Model {
 		$this->db->select('i.invoice_name, i.id_invoice, i.created_at, ng.name, ng.email, ng.newsletters_design');
 		$this->db->from('invoices AS i');
 		$this->db->join('newsletter_general_info AS ng', 'ng.id_newsletter=i.id_newsletter', 'left');
-		$this->db->where(array('ng.deleted'=>'0', 'i.payment_status'=>'P', 'i.invoice_status'=>'0'));
+		$this->db->where(array('ng.deleted'=>'0', 'i.payment_status'=>'R', 'i.invoice_status'=>'0'));
 		$this->db->where("(ng.contract_update_date ='' OR ng.contract_update_date >".$date.")", NULL, FALSE);
 
 		if (!empty($id_newsletters)) {

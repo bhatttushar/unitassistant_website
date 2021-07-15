@@ -190,29 +190,22 @@ define("newsletter_design_constant_val",'25');
 define("nl_flyer_constant_val",'19.99');
 define("newsletter_color_constant_val",'1.29');
 define("newsletter_black_white_constant_val",'0.99');
-//define("month_packet_postage_constant_val",'1.42');
 define("month_packet_postage_constant_val",'1.45');
-//define("consultant_packet_postage_constant_val",'1.72');
 define("consultant_packet_postage_constant_val",'1.75');
-//define("consultant_bundles_constant_val",'6.8');
 define("consultant_bundles_constant_val",'7.15');
 define("consistency_gift_constant_val",'7');
 define("reds_program_gift_constant_val",'5');
 define("stars_program_gift_constant_val",'5');
 define("gift_wrap_postpage_constant_val",'3.5');
-//define("one_rate_postpage_constant_val",'6.8');
 define("one_rate_postpage_constant_val",'7.75');	
 define("month_blast_flyer_constant_val",'7.99');
 define("flyer_ecard_unit_constant_val",'9.99');
 define("unit_challenge_flyer_constant_val",'11.99');
 define("team_building_flyer_constant_val",'11.99');
 define("wholesale_promo_flyer_constant_val",'11.99');
-//define("postcard_design_constant_val",'19.99');
 define("postcard_design_constant_val",'24.99');
 define("postcard_edit_constant_val",'9.99');
-//define("ecard_unit_constant_val",'24.99');
 define("ecard_unit_constant_val",'4.99');
-//define("speciality_postcard_constant_val",'0.65');
 define("speciality_postcard_constant_val",'0.69');
 define("card_with_gift_constant_val", '2.59');
 
@@ -226,7 +219,6 @@ define("anniversary_postcard_constant_val",'0.65');
 define("picture_texting_constant_val",'0.04');
 define("keyword_constant_val",'10');
 define("client_setup_constant_val",'25');
-//define("anniversary_starbucks_constant_val",'1');
 define("anniversary_starbucks_constant_val",'9.99');
 define("special_credit_constant_val",'1');
 define("facebook",'19.99');
@@ -482,24 +474,15 @@ define("FILE_PATH", 'upload/');
 
 
 
-
-/*define("cron_list_id", "5f5cd8e4a0");
-define("cron_template_id", 10000299);
-
-define("billing_list_id", "525317dcdb");
-define("billing_template_id", 10000303);
-
-define("UACC_billing_list_id", "2989c77e8d");
-define("UACC_billing_template_id", 10000307);*/
-
-
 // Live
-define("mailchimp_key", '99ebd2db2f5f20496a3adbd79861bd95-us16');
+/*define("mailchimp_key", '99ebd2db2f5f20496a3adbd79861bd95-us16');*/
+define("mailchimp_key", '8f4a8239c0f699af14ef7a29df3eec2b-us16');
 
 define("cron_list_id", "c9055d7279");
 define("cron_template_id", 10000311);
 
 define("billing_list_id", "3cfd020cb7");
+//define("billing_list_id", "49f89983e2"); //New list id
 define("billing_template_id", 10000323);
 
 define("UACC_billing_list_id", "04ff86b27d");

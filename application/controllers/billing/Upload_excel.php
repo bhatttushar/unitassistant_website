@@ -205,8 +205,8 @@ class Upload_excel extends CI_Controller {
                     }
                     
                     if ($aPriceDetail['digital_biz_card'] != 0 && $aPriceDetail['digital_biz_card'] != '') {
-                        $iGrandTotal += digital_biz_card;
-                        $iGrandSTotal += digital_biz_card;
+                        $iGrandTotal += DIGITAL_BIZ_CARD;
+                        $iGrandSTotal += DIGITAL_BIZ_CARD;
                     }
                     
                     if ($aPriceDetail['other_language_newsletter']!=0 && $aPriceDetail['other_language_newsletter']!='') {
@@ -408,7 +408,6 @@ class Upload_excel extends CI_Controller {
                     $sPackageValue = empty($aPriceDetail['package_value']) ? 0 : $aPriceDetail['package_value'];
                     
                     $sTotalCharge = $aPriceDetail['package_pricing'];
-                    $serializedData = $aPriceDetail['hidden_point_values'];
                     $nNewUnit = $aRows[2];
                     if ($sPackage != 'N' || $sPackage != '') {
                         $aPackageValue = GetPackageValue($sPackage, $nNewUnit);
@@ -425,7 +424,7 @@ class Upload_excel extends CI_Controller {
                         $sPackagePrice = $iGrandTotal;
                         $aPackageValue = 0;
                     }
-                    $this->upload_excel_model->update_newsletters($sPackagePrice, $sPackageSUB, $nNewUnit, $aPackageValue, $serializedData, $aPriceDetail['id_newsletter']);
+                    $this->upload_excel_model->update_newsletters($sPackagePrice, $sPackageSUB, $nNewUnit, $aPackageValue, $aPriceDetail['id_newsletter']);
                 }
             }
 
@@ -730,17 +729,16 @@ class Upload_excel extends CI_Controller {
             }
 
             if ($field == 'special_cr_note' || $field == 'invoice_note' ) {
-                $update = $this->upload_excel_model->update_excel_field('', '', $aRows, $field);
+                $update = $this->upload_excel_model->update_excel_field('', $aRows, $field);
             }elseif ($field == 'beatly_url' || $field == 'beatly_url_one' || $field == 'beatly_url_two') {
-                $update = $this->upload_excel_model->update_excel_field('', '', $aRows, $field);
+                $update = $this->upload_excel_model->update_excel_field('', $aRows, $field);
             }else{
 
                 $aPrice = $this->upload_excel_model->get_excel_field($aRows[1], $field);
 
                 if (!empty($aPrice)) {
                     $data = get_excel_field_price($aPrice, $aRows, $field);
-                    $update = $this->upload_excel_model->update_excel_field($data[0], $data[1], $aRows, $field);
-                    
+                    $update = $this->upload_excel_model->update_excel_field($data, $aRows, $field);
                 }
             }
         }

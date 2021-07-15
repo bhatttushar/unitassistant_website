@@ -23,7 +23,8 @@ jQuery(document).ready(function($) {
     });
 
     var table = $('#uacc_billing_table').DataTable({
-      "iDisplayLength": 100
+      "iDisplayLength": 100,
+      "columnDefs": [ { "orderable": false, "targets": 1 } ]
       // 'processing': true,
       // 'serverSide': true,
       // 'serverMethod': 'post',
@@ -304,5 +305,7 @@ jQuery(document).ready(function($) {
             });
         }
     });
-
+    $('#uacc_billing_table').on('draw.dt', function() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+    });
 });

@@ -789,3 +789,16 @@ a.dropdown-item.active {
 .navbar-login{
     width: 300px;
 }
+
+.btn-status {
+    background-color: rgb(219, 46, 33) !important;
+    color: #fff!important;
+    font-size: 14px;
+    font-weight: 400 !important;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px !important;
+    text-align: center !important;
+    vertical-align: middle;
+    white-space: nowrap;
+}

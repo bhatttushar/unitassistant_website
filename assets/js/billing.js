@@ -30,11 +30,21 @@ jQuery(document).ready(function($) {
 		$('#delete_form').submit();
 	});
 
-	
-	var table = $('#table_id').DataTable({
-       "iDisplayLength": 100,
+	var oldStart = 0;
+    $('.overlay_ajax').show();
+	var table = $('#ua_billing_table').DataTable({
       'processing': true,
       'serverSide': true,
+      'fnDrawCallback': function (o) {
+            if ( o._iDisplayStart != oldStart ) {
+                var targetOffset = $('#ua_billing_table').offset().top;
+                $('html,body').animate({scrollTop: targetOffset}, 500);
+                oldStart = o._iDisplayStart;
+            }
+        },
+        fnInitComplete : function() {
+          $(".overlay_ajax").hide();
+       },
       'serverMethod': 'post',
       'ajax': {
             'url':baseURL+'/billing/ajaxData',
@@ -53,7 +63,7 @@ jQuery(document).ready(function($) {
          { data: 'account_balance' },
          { data: 'button1' },
       ],
-      "iDisplayLength": 100,
+      "iDisplayLength": 50,
       'aoColumnDefs': [{
            'bSortable': false,
            'aTargets': ['nosort']
@@ -61,9 +71,10 @@ jQuery(document).ready(function($) {
       "dom": '<"top"f<"clear">>rt<"bottom"p<"clear">>'
     });
 
-    var table = $('#ua_billing_table').DataTable({
-       "iDisplayLength": 100
-    });
+    // var table = $('#ua_billing_table').DataTable({
+    //    "iDisplayLength": 100,
+    //    "columnDefs": [ { "orderable": false, "targets": 1 } ]
+    // });
     // check un check records
     $('#checkall').on('change',function(){
     	if($(this).prop('checked')) {
@@ -286,5 +297,4 @@ jQuery(document).ready(function($) {
             });
         }
     });
-
 });

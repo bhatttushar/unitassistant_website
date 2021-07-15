@@ -54,152 +54,69 @@ function GetInvoiceMailContent($id_newsletter,$id_invoice){
 }
 
 function get_excel_field_price($data, $aRows, $field){
-	
-	$aUnserialzed = unserialize($data['hidden_point_values']);
 
 	if ($field=='newsletter_color') {
-		$nNewNewsletterColor = $aRows[2] * (newsletter_color_constant_val);
-	    $nNewNewsletterBlack = $aRows[3] * (newsletter_black_white_constant_val);
-	    $Old_newsColor = (int)$data['newsletter_color'] * newsletter_color_constant_val;
-	    $Old_newsBAW = (int)$data['newsletter_black_white'] * newsletter_black_white_constant_val;
-	    $sTotalCharge = (float)($nNewNewsletterColor-$Old_newsColor)+($nNewNewsletterBlack-$Old_newsBAW); 
-	    $aUnserialzed[0] = $nNewNewsletterColor;
-	    $aUnserialzed[1] = $nNewNewsletterBlack;
-
+		$sTotalCharge = $aRows[2] * (newsletter_color_constant_val);
+	    $sTotalCharge += $aRows[3] * (newsletter_black_white_constant_val);
 	}elseif ($field=='month_packet_postage') {
-		$month_packet_postage = $aRows[2] * (month_packet_postage_constant_val);
-		$sTotalCharge = (float) $month_packet_postage - $aUnserialzed[2]; 
-		$aUnserialzed[2] = $month_packet_postage;
-
+		$sTotalCharge = $aRows[2] * (month_packet_postage_constant_val);
 	}elseif ($field=='consultant_packet_postage') {
-        $consultant_packet_postage = $aRows[2] * (consultant_packet_postage_constant_val);
-        $sTotalCharge = (float) $consultant_packet_postage - $aUnserialzed[3]; 
-        $aUnserialzed[3] = $consultant_packet_postage;
-
+        $sTotalCharge = $aRows[2] * (consultant_packet_postage_constant_val);
 	}elseif ($field == 'consultant_bundles') {
-        $consultant_bundles = $aRows[2] * (consultant_bundles_constant_val);
-        $sTotalCharge = (float) $consultant_bundles - $aUnserialzed[4]; 
-        $aUnserialzed[4] = $consultant_bundles;
-
+        $sTotalCharge = $aRows[2] * (consultant_bundles_constant_val);
 	}elseif ($field == 'consistency_gift') {
-        $consistency_gift = $aRows[2] * (consistency_gift_constant_val);
-        $sTotalCharge = (float) $consistency_gift - $aUnserialzed[5]; 
-        $aUnserialzed[5] = $consistency_gift;
-
+        $sTotalCharge = $aRows[2] * (consistency_gift_constant_val);
 	}elseif ($field == 'reds_program_gift') {
-        $reds_program_gift = $aRows[2] * (reds_program_gift_constant_val);
-        $sTotalCharge = (float) $reds_program_gift - $aUnserialzed[6]; 
-        $aUnserialzed[6] = $reds_program_gift;
-
+        $sTotalCharge = $aRows[2] * (reds_program_gift_constant_val);
 	}elseif ($field == 'stars_program_gift') {
-        $stars_program_gift = $aRows[2] * (stars_program_gift_constant_val);
-        $sTotalCharge = (float) $stars_program_gift - $aUnserialzed[7]; 
-        $aUnserialzed[7] = $stars_program_gift;
-
+        $sTotalCharge = $aRows[2] * (stars_program_gift_constant_val);
 	}elseif ($field == 'gift_wrap_postpage') {
-        $gift_wrap_postpage = $aRows[5] * (gift_wrap_postpage_constant_val);
-        $sTotalCharge = (float) $gift_wrap_postpage - (float) $aUnserialzed[8]; 
-        $aUnserialzed[8] = $gift_wrap_postpage;
+        $sTotalCharge = $aRows[5] * (gift_wrap_postpage_constant_val);
 	}elseif ($field == 'one_rate_postpage') {
-        $one_rate_postpage = $aRows[2] * (one_rate_postpage_constant_val);
-        $sTotalCharge = (float) $one_rate_postpage - $aUnserialzed[9]; 
-        $aUnserialzed[9] = $one_rate_postpage;
-
+        $sTotalCharge = $aRows[2] * (one_rate_postpage_constant_val);
 	}elseif ($field == 'month_blast_flyer') {
-        $month_blast_flyer = $aRows[2] * (month_blast_flyer_constant_val);
-        $sTotalCharge = (float) $month_blast_flyer - $aUnserialzed[10];
-        $aUnserialzed[10] = $month_blast_flyer;
-
+        $sTotalCharge = $aRows[2] * (month_blast_flyer_constant_val);
 	}elseif ($field == 'flyer_ecard_unit') {
-        $nUnitChallengeFlyer = $aRows[2] * (unit_challenge_flyer_constant_val);
-        $nTeamBuildingFlyer = $aRows[3] * (team_building_flyer_constant_val);
-        $nWholeSalePromoFlyer = $aRows[4] * (wholesale_promo_flyer_constant_val);
-        $nNlFlyer = $aRows[5] * (nl_flyer_constant_val);
-        $nPostcardDesignFlyer = $aRows[6] * (postcard_design_constant_val);
-        $nFlyerDesign = $aRows[7] * (ecard_unit_constant_val);
-        $nFlyerEcatdToUnit = $aRows[8] * (flyer_ecard_unit_constant_val);
-        $nPostcardEdit = $aRows[9] * (postcard_edit_constant_val);
-
-
-                 
-        $sTotalCharge = (float) ($nUnitChallengeFlyer - $aUnserialzed[12]) + ($nTeamBuildingFlyer - $aUnserialzed[13]) + ($nWholeSalePromoFlyer - $aUnserialzed[14]) + ($nPostcardDesignFlyer - $aUnserialzed[15]) + ($nFlyerDesign - $aUnserialzed[17]) +($nFlyerEcatdToUnit - $aUnserialzed[11]) + ($nPostcardEdit - $aUnserialzed[16]) + ($nNlFlyer - $aUnserialzed[29]); 
-
-        $aUnserialzed[11] = $nFlyerEcatdToUnit;
-        $aUnserialzed[12] = $nUnitChallengeFlyer;
-        $aUnserialzed[13] = $nTeamBuildingFlyer;
-        $aUnserialzed[14] = $nWholeSalePromoFlyer;
-        $aUnserialzed[15] = $nPostcardDesignFlyer;
-        $aUnserialzed[16] = $nPostcardEdit;
-        $aUnserialzed[17] = $nFlyerDesign;
-        $aUnserialzed[29] = $nNlFlyer;
-
+        $sTotalCharge = $aRows[2] * (unit_challenge_flyer_constant_val);
+        $sTotalCharge += $aRows[3] * (team_building_flyer_constant_val);
+        $sTotalCharge += $aRows[4] * (wholesale_promo_flyer_constant_val);
+        $sTotalCharge += $aRows[5] * (nl_flyer_constant_val);
+        $sTotalCharge += $aRows[6] * (postcard_design_constant_val);
+        $sTotalCharge += $aRows[7] * (ecard_unit_constant_val);
+        $sTotalCharge += $aRows[8] * (flyer_ecard_unit_constant_val);
+        $sTotalCharge += $aRows[9] * (postcard_edit_constant_val);
 	}elseif ($field == 'speciality_postcard') {
-        $speciality_postcard = $aRows[2] * (speciality_postcard_constant_val);
-        $sTotalCharge = (float) $speciality_postcard - $aUnserialzed[18]; 
-        $aUnserialzed[18] = $speciality_postcard;
-
+        $sTotalCharge = $aRows[2] * (speciality_postcard_constant_val);
 	}elseif ($field == 'card_with_gift') {
-        $card_with_gift = $aRows[2] * (card_with_gift_constant_val);
-        $sTotalCharge = (float) $card_with_gift - (float) $aUnserialzed[19]; 
-        $aUnserialzed[19] = $card_with_gift;
-
+        $sTotalCharge = $aRows[2] * (card_with_gift_constant_val);
 	}elseif ($field == 'birthday_brownie') {
-        $birthday_brownie = $aRows[2] * (birthday_brownie_constant_val);
-        $sTotalCharge = (float) $birthday_brownie - (float)$aUnserialzed[20]; 
-        $aUnserialzed[20] = $birthday_brownie;
-
+        $sTotalCharge = $aRows[2] * (birthday_brownie_constant_val);
 	}elseif ($field == 'birthday_starbucks') {
-        $birthday_starbucks = $aRows[2] * (birthday_starbucks_constant_val);
-        $sTotalCharge = (float) $birthday_starbucks - $aUnserialzed[21]; 
-        $aUnserialzed[21] = $birthday_starbucks;
-
+        $sTotalCharge = $aRows[2] * (birthday_starbucks_constant_val);
 	}elseif ($field == 'anniversary_starbucks') {
-		$anniversary_starbucks = $aRows[2] * (anniversary_starbucks_constant_val);
-        $sTotalCharge = (float) $anniversary_starbucks - (float)$aUnserialzed[22]; 
-        $aUnserialzed[22] = $anniversary_starbucks;
-
+		$sTotalCharge = $aRows[2] * (anniversary_starbucks_constant_val);
     }elseif ($field == 'referral_credit') {
         $nNewReferral = $aRows[2] * (referral_credit_constant_val);
-        $nOldReferral = (float) $aUnserialzed[23];
+        $nOldReferral = referral_credit_constant_val;
         $sTotalCharge = ( $nOldReferral) - $nNewReferral; 
-        $aUnserialzed[23] = $nNewReferral;
-
     }elseif ($field == 'special_credit') {
     	$sTotalCharge = 0; 
-       $aUnserialzed[24] = $aRows[2];
-
     }elseif ($field == 'cc_billing') {
-        $cc_billing = $aRows[2] * (UACC_BILLING);
-        $sTotalCharge = (float) $cc_billing - (float)$aUnserialzed[25]; 
-        $aUnserialzed[25] = $cc_billing;
-        
+        $sTotalCharge = $aRows[2] * (UACC_BILLING);
     }elseif ($field == 'customer_newsletter') {
-        $customer_newsletter = $aRows[2] * (customer_newsletter_constant_val);
-        $sTotalCharge = (float) $customer_newsletter - (float)$aUnserialzed[26]; 
-        $aUnserialzed[26] = $customer_newsletter;
+        $sTotalCharge = $aRows[2] * (customer_newsletter_constant_val);
 
     }elseif ($field == 'picture_texting') {
-        $picture_texting = $aRows[2] * (picture_texting_constant_val);
-        $sTotalCharge = (float) $picture_texting - $aUnserialzed[30]; 
-        $aUnserialzed[30] = $picture_texting;
-
+        $sTotalCharge = $aRows[2] * (picture_texting_constant_val);
     }elseif ($field == 'keyword') {
-        $keyword = $aRows[2] * (keyword_constant_val);
-        $sTotalCharge = (float) $keyword - (float)$aUnserialzed[31]; 
-        $aUnserialzed[31] = $keyword;
+        $sTotalCharge = $aRows[2] * (keyword_constant_val);
     }elseif ($field == 'client_setup') {
-        $client_setup = $aRows[2] * (client_setup_constant_val);
-        $sTotalCharge = (float)$client_setup - (float)$aUnserialzed[32]; 
-        $aUnserialzed[32] = (float) $client_setup;
+        $sTotalCharge = $aRows[2] * (client_setup_constant_val);
     }elseif ($field=='greeting_card') {
-        $aUnserialzed[33] = (!empty($aUnserialzed[33]) ? $aUnserialzed[33] : 0);
-        $greeting_card = $aRows[2] * (greeting_card_constant_val);
-        $sTotalCharge = (float) $greeting_card - (float)$aUnserialzed[33]; 
-        $aUnserialzed[33] = $greeting_card;
+        $sTotalCharge = $aRows[2] * (greeting_card_constant_val);
 	}
 
-    $sTotalCharge = $sTotalCharge + $data['package_pricing'];
-	return array(serialize($aUnserialzed), $sTotalCharge);
+    return $sTotalCharge + $data['package_pricing'];
 }
 
 

@@ -174,7 +174,7 @@ class UACC_excel_export extends CI_Controller {
     if (isset($unsub) && ($unsub=='unsub')) {
       $excel_file_name = 'Unsub_UACC_client.xlsx';
     }else{
-      $excel_file_name = empty($id_cc_newsletter) ? 'UACC_Client_'.date('m-d-y').'.xlsx' : 'UACC-client-history.xlsx';
+      $excel_file_name = empty($id_cc_newsletter) ? 'UACC_Client.xlsx' : 'UACC-client-history.xlsx';
     }
     
 
